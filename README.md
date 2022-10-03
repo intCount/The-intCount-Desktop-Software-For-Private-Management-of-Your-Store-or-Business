@@ -1,8 +1,6 @@
-# intCount 
+# intCount
 
 intCount Is an Intuitive, Easy to Use Desktop Software That Allow Anybody to Manage a Store, Small Home Business, Medium Factory/Company,  While Keeping Data Private.
-
-Completely FREE on MAC, Wind &amp;Linux
 
 ## Installation
 
@@ -24,6 +22,12 @@ Please Make Sure to Update Tests as Appropriate.
 A Donation Would be Much Appreciated from Any Company/Little Factory or Somebody Enjoying our Software out There, Thank you Very Much. 
 
 PayPal: [intCount](https://paypal.me/intcount?country.x=MA&locale.x=en_US)
+
+## My features/ Development
+
+For Any Request for Customization or Adding Features That Meet Your Business Needs to the Software , Please Send Email to These Addresses Only:
+
+hicham@intcount.com OR intcountm@gmail.com
 
 ## License
 [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/)
