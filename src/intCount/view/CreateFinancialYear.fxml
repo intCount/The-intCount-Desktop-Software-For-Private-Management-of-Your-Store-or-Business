@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+      fx:controller="intCount.controller.CreateFinancialYearController"
+      fillHeight="false" alignment="TOP_CENTER">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/createfinancialyear.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+
+    <GridPane vgap="15.0" hgap="10.0" fx:id="gridPane" styleClass="parent"
+              alignment="TOP_CENTER">
+        <Text fx:id="heading" text="Create a fiscal year" GridPane.columnSpan="4"
+              textAlignment="CENTER" underline="true" GridPane.halignment="CENTER">
+            <GridPane.margin>
+                <Insets left="0" top="10.0" right="0.0" bottom="20.0"/>
+            </GridPane.margin>
+        </Text>
+        <Label text="_Starting Date:" GridPane.rowIndex="1" styleClass="nodeLabel"
+               GridPane.valignment="TOP" mnemonicParsing="true" labelFor="${dpStartDate}"/>
+        <VBox spacing="2.0" GridPane.rowIndex="1" GridPane.columnIndex="1"
+              styleClass="parent">
+            <GridPane.margin>
+                <Insets top="0" right="25.0" bottom="10.0" left="0.0"/>
+            </GridPane.margin>
+            <DatePicker fx:id="dpStartDate" promptText="e.g. 27.03.2016"/>
+            <Label fx:id="lblStartDateError" styleClass="errorLabel"/>
+        </VBox>
+        <Label text="_End Date:" GridPane.rowIndex="1" GridPane.columnIndex="2"
+               styleClass="nodeLabel" GridPane.valignment="TOP"
+               mnemonicParsing="true" labelFor="${dpEndDate}"/>
+        <VBox spacing="2.0" GridPane.rowIndex="1" GridPane.columnIndex="3"
+              styleClass="parent">
+            <DatePicker fx:id="dpEndDate" promptText="e.g. 27.03.2016"/>
+            <Label fx:id="lblEndDateError" styleClass="errorLabel"/>
+        </VBox>
+        <VBox spacing="15.0" GridPane.rowIndex="2" GridPane.columnSpan="4"
+              styleClass="parent">
+            <CheckBox fx:id="chkTransferData" styleClass="nodeLabel" mnemonicParsing="true"
+                      text="_Transfer data from an existing fiscal year"/>
+            <VBox spacing="2.0" fx:id="existingYearsPane" styleClass="parent">
+                <Label text="Existing years:" styleClass="nodeLabel"
+                       mnemonicParsing="true" labelFor="${lvwExistingYears}"/>
+                <VBox spacing="2.0" styleClass="parent">
+                    <ListView fx:id="lvwExistingYears" maxHeight="300.0" maxWidth="300.0">
+                        <placeholder>
+                            <Label text="No fiscal year found" fx:id="placeholderLabel"/>
+                        </placeholder>
+                    </ListView>
+                    <Label fx:id="lblExistingYearError" styleClass="errorLabel"/>
+                </VBox>
+            </VBox>
+        </VBox>
+        <Separator GridPane.rowIndex="3" GridPane.columnSpan="4"/>
+        <TilePane GridPane.rowIndex="4" GridPane.columnSpan="4" prefColumns="2"
+                  hgap="25.0" alignment="TOP_RIGHT" fx:id="tilePane"
+                  styleClass="parent">
+            <Button text="Create" fx:id="btnCreate" mnemonicParsing="true"
+                    onAction="#onCreateFinancialYearAction">
+                <tooltip>
+                    <Tooltip text="Click this button to create a new fiscal year."/>
+                </tooltip>
+            </Button>
+            <Button text="_Close" fx:id="btnClose" maxWidth="$MAX_DOUBLE"
+                    onAction="#onCloseTabAction" mnemonicParsing="true" cancelButton="true"/>
+        </TilePane>
+    </GridPane>
+</HBox>
+

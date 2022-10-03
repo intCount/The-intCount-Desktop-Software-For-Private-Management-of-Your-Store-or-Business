@@ -1,0 +1,15 @@
+@import "common.css";
+
+#gridPane{
+    -fx-padding: 20px 40px 20px 40px;
+    -fx-border-style:solid; 
+    -fx-border-color: -lookupBorder;
+}
+
+#heading{
+    -fx-alignment: TOP_CENTER;
+}
+
+
+
+

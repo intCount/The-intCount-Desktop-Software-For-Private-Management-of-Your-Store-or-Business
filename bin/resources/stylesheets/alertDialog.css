@@ -1,0 +1,58 @@
+@import "common.css";
+
+/*.dialog-pane{
+  -fx-border-color:black;
+  -fx-border-width:2.0px;
+ }*/
+ 
+ /*.dialog-pane > .button-bar > .container {
+  -fx-background-color:black;
+} */
+.dialog-pane {
+    backgroundColor: #fdfbf8;
+    -fx-background-color:  -lookupBackground;
+}
+
+.dialog-pane > .content.label {
+    /*same style as applied to the styleclass nodeLabel */
+   -fx-text-fill: derive(brown, -10%);
+   -fx-font-weight: bold;
+   -fx-wrap-text: true;
+   -fx-font-size: 1.1em;
+}
+
+/**Costumization of DialogPane Header**/
+.dialog-pane .header-panel {
+  -fx-background-color: derive(bisque, 40%);
+}
+
+.dialog-pane .header-panel .label{
+  -fx-font-size:1.14em;
+  -fx-font-weight: bold;
+  -fx-text-fill: maroon;
+  -fx-wrap-text: true;
+   -fx-font-style: italic;
+}
+
+
+/**Costumization of Buttons**/
+/*.dialog-pane .button{
+   -fx-background-color:black;
+   -fx-text-fill:white;
+   -fx-wrap-text: true;
+   -fx-effect: dropshadow( three-pass-box, yellow, 10.0, 0.0, 0.0, 0.0);
+   -fx-cursor:hand;
+ }*/
+
+/*.dialog-pane .button:hover{     
+  -fx-background-color:white;
+  -fx-text-fill:black;
+  -fx-font-weight:bold; 
+ }*/
+ 
+ 
+
+
+/*.dialog-pane .label {
+    -fx-text-fill: white;
+}*/

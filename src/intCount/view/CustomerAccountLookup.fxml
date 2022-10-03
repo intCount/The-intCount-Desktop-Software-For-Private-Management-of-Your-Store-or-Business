@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+            fx:controller="intCount.controller.CustomerAccountController">
+    <stylesheets>
+        <URL value="@/resources/stylesheets/customeraccountlookup.css"/>
+    </stylesheets>
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+    <top>
+        <VBox spacing="15.0" alignment="TOP_CENTER" fillWidth="false" styleClass="parent">
+            <Text fx:id="heading" text="Customer account"/>
+
+            <TitledPane fx:id="titledPane" styleClass="parent">
+                <text>
+                    Account Search Criteria
+                </text>
+                <content>
+                    <GridPane fx:id="criteriaPane" hgap="15.0" vgap="20.0" styleClass="parent">
+                        <rowConstraints>
+                            <RowConstraints/>
+                            <RowConstraints/>
+                            <RowConstraints minHeight="30.0"/>
+                        </rowConstraints>
+
+                        <Label text="Client:" GridPane.valignment="TOP" mnemonicParsing="true"
+                               labelFor="$tfCustomer" styleClass="nodeLabel"/>
+                        <VBox spacing="3.0" GridPane.columnIndex="1" styleClass="parent">
+                            <!-- <ComboBox fx:id="cbCustomers" minWidth="100.0" /> -->
+                            <TextField fx:id="tfCustomer" prefColumnCount="30"
+                                       promptText="&lt;The matching names appear while typing &gt;">
+                                <tooltip>
+                                    <Tooltip text="The matching customers' list will appear by typing"/>
+                                </tooltip>
+                            </TextField>
+                            <Label fx:id="lblCustomersError" styleClass="errorLabel"/>
+                        </VBox>
+                        <VBox spacing="3.0" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                              GridPane.columnSpan="2" styleClass="parent">
+                            <HBox spacing="10.0" styleClass="parent">
+                                <CheckBox fx:id="chkEntriesSince" mnemonicParsing="true"
+                                          text="View account entries from " styleClass="nodeLabel"/>
+                                <DatePicker fx:id="dpEntriesSince" promptText="e.g. 28.07.2016"/>
+                            </HBox>
+                            <Label fx:id="lblEntriesSinceError" styleClass="errorLabel"/>
+                        </VBox>
+                        <HBox GridPane.columnIndex="1" GridPane.rowIndex="2" alignment="BOTTOM_RIGHT"
+                              fx:id="buttonContainer" styleClass="parent">
+                            <Button fx:id="btnShowEntries" text="View Account Entries"
+                                    mnemonicParsing="true" onAction="#onEntriesLookupAction"/>
+                        </HBox>
+                    </GridPane>
+                </content>
+            </TitledPane>
+        </VBox>
+    </top>
+    <center>
+        <VBox fillWidth="true" spacing="20" styleClass="parent" fx:id="contentHolder">
+            <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                <ScrollPane styleClass="parent" fx:id="scrollPane">
+                    <HBox alignment="TOP_CENTER" minWidth="${scrollPane.viewportBounds.width}">
+                        <TitledPane fx:id="entriesPane" expanded="false" styleClass="parent" alignment="TOP_CENTER">
+                            <text>
+                                Customer account entries
+                            </text>
+                            <content>
+                                <BorderPane styleClass="parent">
+                                    <center>
+                                        <TableView fx:id="tableView" maxHeight="400.0">
+                                            <placeholder>
+                                                <Label text="No matching payment found."/>
+                                            </placeholder>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                            </columnResizePolicy>
+                                            <columns>
+                                                <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"
+                                                             minWidth="50.0">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="entryDate"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="200"
+                                                             minWidth="100.0">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="entryDescription"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn fx:id="debitAmountColumn" text="Debit amount in (Dirham)"
+                                                             prefWidth="150" minWidth="70.0">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="debitAmount"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                                <TableColumn fx:id="creditAmountColumn"
+                                                             text="Credit amount in (Dirham)" prefWidth="150"
+                                                             minWidth="70.0">
+                                                    <cellValueFactory>
+                                                        <PropertyValueFactory property="creditAmount"/>
+                                                    </cellValueFactory>
+                                                </TableColumn>
+                                            </columns>
+                                        </TableView>
+                                    </center>
+                                    <right>
+                                        <VBox fx:id="rightBar" spacing="20.0" styleClass="parent">
+
+                                            <Button fx:id="btnEditEntry" text="_Edit"
+                                                    onAction="#onEditEntryAction" mnemonicParsing="true"
+                                                    maxWidth="$MAX_DOUBLE" disable="true"/>
+
+                                            <Button fx:id="btnDeleteEntry" text="_Supprimer"
+                                                    mnemonicParsing="true" onAction="#onDeleteEntryAction"
+                                                    disable="true"/>
+                                        </VBox>
+                                    </right>
+                                    <bottom>
+                                        <VBox fillWidth="true" fx:id="summaryBar"
+                                              spacing="10.0" styleClass="parent">
+                                            <HBox spacing="15.0" styleClass="parent">
+                                                <HBox spacing="5.0" alignment="CENTER_LEFT" styleClass="parent">
+                                                    <Label text="Debit Total in (Dirham ): "
+                                                           styleClass="semiHighlight"/>
+                                                    <TextField fx:id="tfDebitTotal" editable="false"
+                                                               prefColumnCount="8" focusTraversable="false"
+                                                               styleClass="summaryNode,readOnlyField"/>
+                                                </HBox>
+                                                <HBox spacing="5.0" alignment="CENTER_LEFT" styleClass="parent">
+                                                    <Label text="Credit total in (Dirham ): "
+                                                           styleClass="semiHighlight"/>
+                                                    <TextField fx:id="tfCreditTotal" editable="false"
+                                                               focusTraversable="false" prefColumnCount="8"
+                                                               styleClass="summaryNode,readOnlyField"/>
+                                                </HBox>
+                                            </HBox>
+                                            <BorderPane styleClass="parent">
+                                                <left>
+                                                    <HBox spacing="5.0" alignment="CENTER_LEFT" styleClass="parent">
+                                                        <Label text="Account balance in (Dirham):"
+                                                               fx:id="balanceLabel" styleClass="highlight"/>
+                                                        <TextField fx:id="tfAccountBalance" editable="false"
+                                                                   focusTraversable="false" prefColumnCount="10"
+                                                                   styleClass="readOnlyField"/>
+                                                    </HBox>
+                                                </left>
+                                                <right>
+                                                    <Button fx:id="btnPrintAccount" text="Print account"
+                                                            mnemonicParsing="true" onAction="#onPrintAccountAction"/>
+                                                </right>
+
+                                            </BorderPane>
+                                        </VBox>
+                                    </bottom>
+                                </BorderPane>
+                            </content>
+                        </TitledPane>
+                    </HBox>
+                </ScrollPane>
+            </HBox>
+            <VBox spacing="10.0" alignment="BOTTOM_RIGHT" VBox.vgrow="NEVER">
+                <Button fx:id="btnClose" text="_Close" onAction="#onCloseButtonAction"
+                        cancelButton="true" mnemonicParsing="true"/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>
+
+

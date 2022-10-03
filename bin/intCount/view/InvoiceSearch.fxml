@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.CheckListView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+            fx:controller="intCount.controller.InvoiceSearchController">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/invoicesearch.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <ToggleGroup fx:id="searchCriteriaGroup"/>
+        <ToggleGroup fx:id="invoiceTypeGroup"/>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+
+    <top>
+        <HBox alignment="TOP_CENTER" styleClass="parent">
+            <Text fx:id="heading" text="Invoice search"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane styleClass="parent" fx:id="scrollPane" BorderPane.alignment="TOP_CENTER">
+            <HBox alignment="TOP_CENTER" minWidth="${scrollPane.viewportBounds.width}" styleClass="parent">
+                <VBox spacing="15" styleClass="parent" alignment="TOP_CENTER">
+                    <TitledPane fx:id="invoiceSearchCriteriaPanel" styleClass="parent">
+                        <text>
+                            Invoice search criteria
+                        </text>
+                        <content>
+                            <VBox fx:id="criteriaContainer" spacing="10.0" styleClass="parent" minWidth="400"
+                                  fillWidth="true">
+                                <VBox spacing="15.0" styleClass="parent">
+                                    <RadioButton fx:id="invoiceNumberButton" text="Search by invoice number"
+                                                 styleClass="criteriaHeading" toggleGroup="$searchCriteriaGroup"/>
+                                    <HBox fx:id="invoiceNumberPanel" spacing="5.0" alignment="TOP_LEFT"
+                                          visible="false" managed="false" styleClass="parent">
+                                        <Label text="Bill number: " labelFor="${invoiceNumberField}"
+                                               styleClass="nodeLabel"/>
+                                        <VBox spacing="3.0" styleClass="parent">
+                                            <TextField fx:id="invoiceNumberField" prefColumnCount="8"/>
+                                            <Label fx:id="invoiceNumberError" visible="false"
+                                                   managed="false" styleClass="errorLabel"/>
+                                        </VBox>
+                                    </HBox>
+                                </VBox>
+                                <VBox spacing="15.0" styleClass="parent">
+                                    <RadioButton fx:id="otherCriteriaButton" text="Search by other criteria"
+                                                 toggleGroup="$searchCriteriaGroup" styleClass="criteriaHeading"/>
+                                    <VBox fx:id="otherCriteriaPanel" spacing="15.0"
+                                          visible="false" managed="false" styleClass="parent">
+                                        <VBox spacing="15.0" styleClass="parent">
+                                            <CheckBox fx:id="invoiceDateButton" text="Billing date"
+                                                      styleClass="criteriaSubHeading"/>
+                                            <HBox fx:id="invoiceDatePanel" spacing="15.0"
+                                                  visible="false" managed="false" styleClass="parent">
+                                                <HBox spacing="5.0" alignment="TOP_LEFT" styleClass="parent">
+                                                    <Label text="Start date: " labelFor="${startDateField}"
+                                                           styleClass="nodeLabel"/>
+                                                    <VBox spacing="3.0" styleClass="parent">
+                                                        <DatePicker fx:id="startDateField"
+                                                                    promptText="e.g. 27.03.2016"/>
+                                                        <Label fx:id="startDateError" managed="false"
+                                                               visible="false" styleClass="errorLabel"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <HBox spacing="5.0" alignment="TOP_LEFT" styleClass="parent">
+                                                    <Label text="Date de Fin: " labelFor="${endDateField}"
+                                                           styleClass="nodeLabel"/>
+                                                    <VBox spacing="3.0" styleClass="parent">
+                                                        <DatePicker fx:id="endDateField" promptText="e.g. 27.03.2016"/>
+                                                        <Label fx:id="endDateError" managed="false" visible="false"
+                                                               styleClass="errorLabel"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </HBox>
+                                        </VBox>
+                                        <VBox spacing="15.0" styleClass="parent">
+                                            <CheckBox fx:id="invoiceTypeButton" text="Invoice, CreditInvoice/ Quote."
+                                                      styleClass="criteriaSubHeading"/>
+                                            <VBox spacing="4.0" fx:id="invoiceTypePanel" styleClass="parent">
+                                                <VBox spacing="10" styleClass="parent">
+                                                    <RadioButton fx:id="cashInvoiceButton" text="Invoice/CreditInvoice/"
+                                                                 toggleGroup="$invoiceTypeGroup"
+                                                                 styleClass="criteriaSubHeading"/>
+                                                    <RadioButton fx:id="creditInvoiceButton" text="Quote"
+                                                                 toggleGroup="$invoiceTypeGroup"
+                                                                 styleClass="criteriaSubHeading"/>
+                                                </VBox>
+                                                <Label fx:id="invoiceTypeError" managed="false" visible="false"
+                                                       styleClass="errorLabel"/>
+                                                <VBox fx:id="customersPanel" spacing="3.0" styleClass="parent">
+                                                    <VBox.margin>
+                                                        <Insets top="8" left="0" right="0" bottom="0"/>
+                                                    </VBox.margin>
+                                                    <Label text="Customers:" styleClass="nodeLabel"/>
+                                                    <CheckListView fx:id="customersListView" prefHeight="200"
+                                                                   minWidth="500">
+                                                        <placeholder>
+                                                            <Label text="&lt;No customer defined &gt;"
+                                                                   fx:id="placeholderText"/>
+                                                        </placeholder>
+                                                    </CheckListView>
+                                                    <TextField fx:id="tfSearchCustomer" minWidth="${lvwCustomers.width}"
+                                                               promptText="Type to search for matching customer names">
+                                                        <VBox.margin>
+                                                            <Insets top="5.0" bottom="5.0" left="0" right="0"/>
+                                                        </VBox.margin>
+                                                    </TextField>
+                                                    <Label fx:id="customersError" managed="false" visible="false"
+                                                           styleClass="errorLabel"/>
+                                                    <CheckBox fx:id="selectAllCustomersButton"
+                                                              text="Select all customers"
+                                                              styleClass="nodeLabel"
+                                                              onAction="#onSelectAllCustomersAction"/>
+                                                </VBox>
+                                            </VBox>
+                                        </VBox>
+
+                                        <VBox spacing="15.0" styleClass="parent">
+                                            <CheckBox fx:id="invoiceAmountButton" text="Invoice amount"
+                                                      styleClass="criteriaSubHeading"/>
+                                            <HBox fx:id="invoiceAmountPanel" spacing="15.0" styleClass="parent">
+                                                <HBox spacing="5.0" styleClass="parent" alignment="TOP_LEFT">
+                                                    <Label text="Invoice Amount between " labelFor="${startAmountField}"
+                                                           alignment="CENTER_LEFT" fx:id="startAmountLabel"
+                                                           styleClass="nodeLabel"/>
+                                                    <VBox spacing="3.0" styleClass="parent">
+                                                        <TextField fx:id="startAmountField"/>
+                                                        <Label fx:id="startAmountError" managed="false" visible="false"
+                                                               styleClass="errorLabel"/>
+                                                    </VBox>
+                                                </HBox>
+                                                <HBox spacing="5.0" styleClass="parent" alignment="TOP_LEFT">
+                                                    <Label text="And " labelFor="${endAmountField}"
+                                                           styleClass="nodeLabel"
+                                                           alignment="CENTER_LEFT" fx:id="endAmountLabel"/>
+                                                    <VBox spacing="3.0" styleClass="parent">
+                                                        <TextField fx:id="endAmountField"/>
+                                                        <Label fx:id="endAmountError" managed="false" visible="false"
+                                                               styleClass="errorLabel"/>
+                                                    </VBox>
+                                                </HBox>
+                                            </HBox>
+                                        </VBox>
+                                    </VBox>
+                                </VBox>
+                                <Label fx:id="criteriaSelectionError" managed="false" visible="false"
+                                       styleClass="errorLabel"/>
+                                <HBox alignment="TOP_RIGHT" styleClass="parent">
+                                    <VBox.margin>
+                                        <Insets top="15.0" right="0" bottom="0" left="0"/>
+                                    </VBox.margin>
+                                    <Button fx:id="searchInvoiceButton" text="Search Invoice(s) "
+                                            onAction="#onInvoiceSearchAction"/>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </TitledPane>
+                    <TitledPane fx:id="invoiceSearchResultPanel" styleClass="parent">
+                        <text>
+                            Result of the research
+                        </text>
+                        <content>
+                            <BorderPane styleClass="parent">
+                                <center>
+                                    <TableView fx:id="tableView" minHeight="300" minWidth="500" maxWidth="$MAX_DOUBLE">
+                                        <columns>
+                                            <TableColumn fx:id="invoiceNumberColumn" minWidth="60" prefWidth="100"
+                                                         text="Invoice #">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="invoiceNumber"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="invoiceDateColumn" minWidth="100" prefWidth="100"
+                                                         text="Date">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="invoiceDate"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="customerColumn" minWidth="200" prefWidth="300"
+                                                         text="Customer">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="customer"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="invoiceAmountColumn" minWidth="100" prefWidth="140"
+                                                         text="Amount In (Dirham)">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="invoiceAmount"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                        </columns>
+                                        <placeholder>
+                                            <Label text="No matching invoice found."/>
+                                        </placeholder>
+                                        <columnResizePolicy>
+                                            <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                        </columnResizePolicy>
+                                    </TableView>
+                                </center>
+                                <right>
+                                    <VBox spacing="15.0" fx:id="rightButtonsBar" styleClass="parent">
+                                        <Button fx:id="printInvoiceButton" text="Print Invoice"
+                                                maxWidth="$MAX_DOUBLE" onAction="#onInvoicePrintAction"/>
+                                    </VBox>
+                                </right>
+                                <bottom>
+                                    <Label fx:id="invoiceTotalLabel" styleClass="highlight"/>
+                                </bottom>
+                            </BorderPane>
+                        </content>
+                    </TitledPane>
+                </VBox>
+            </HBox>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox alignment="TOP_RIGHT" fx:id="bottomBar" styleClass="parent">
+            <BorderPane.margin>
+                <Insets top="25.0" left="0" right="0" bottom="0"/>
+            </BorderPane.margin>
+            <Button fx:id="closeButton" text="Close" cancelButton="true"
+                    onAction="#onCloseButtonAction"/>
+        </HBox>
+    </bottom>
+</BorderPane>
+

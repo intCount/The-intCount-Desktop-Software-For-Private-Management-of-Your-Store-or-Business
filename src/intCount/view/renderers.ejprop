@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entirejFramework>
+    <renderer>
+        <formRenderers>
+        </formRenderers>
+        <blockRenderers>
+        </blockRenderers>
+        <itemRenderers>
+        </itemRenderers>
+        <lovRenderers>
+        </lovRenderers>
+        <menuRenderers>
+        </menuRenderers>
+        <appCompRenderers>
+        </appCompRenderers>
+    </renderer>
+</entirejFramework>

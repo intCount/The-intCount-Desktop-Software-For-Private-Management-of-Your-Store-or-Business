@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.URL?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="intCount.controller.PaymentController"
+            styleClass="rootNode">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/payment.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <ToggleGroup fx:id="paymentModeToggle"/>
+        <ToggleGroup fx:id="paymentReceivedToggle"/>
+        <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+    </fx:define>
+
+    <center>
+        <ScrollPane styleClass="parent" fx:id="scrollPane" BorderPane.alignment="TOP_CENTER">
+
+            <HBox alignment="TOP_CENTER" minWidth="${scrollPane.viewportBounds.width}"
+                  styleClass="parent">
+                <VBox styleClass="parent" spacing="20.0" fx:id="topContainer">
+                    <padding>
+                        <Insets left="50.0" right="50.0" top="20.0" bottom="30.0"/>
+                    </padding>
+
+
+                    <HBox alignment="TOP_CENTER">
+                        <Label text="Payment" fx:id="heading"/>
+                        <VBox.margin>
+                            <Insets top="5.0" right="0" bottom="0.0" left="0"/>
+                        </VBox.margin>
+                    </HBox>
+
+                    <StackPane alignment="CENTER">
+                        <GridPane hgap="15.0" vgap="12.0" fx:id="gridPane" styleClass="parent">
+                            <Label text="_Customer:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                                   labelFor="${cbCustomers}" mnemonicParsing="true" GridPane.valignment="TOP"
+                                   styleClass="nodeLabel"/>
+                            <VBox spacing="3.0" GridPane.columnIndex="1" fillWidth="false"
+                                  GridPane.rowIndex="0" styleClass="parent">
+                                <TextField fx:id="tfCustomer" prefColumnCount="30"
+                                           promptText="&lt; Matching customer names appear as you type &gt;"/>
+                                <Label fx:id="lblCustomersError" styleClass="errorLabel"/>
+                            </VBox>
+
+                            <Label fx:id="lblBalance" text="Balance (Dirham):" GridPane.columnIndex="0"
+                                   GridPane.rowIndex="1" styleClass="nodeLabel"/>
+                            <TextField fx:id="tfCustomerBalance" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="1" editable="false" focusTraversable="false"
+                                       styleClass="readOnlyField" prefColumnCount="15"
+                                       GridPane.fillWidth="false" GridPane.hgrow="NEVER"/>
+
+                            <Label text="Payment date:" GridPane.columnIndex="0"
+                                   GridPane.rowIndex="2" GridPane.valignment="TOP" styleClass="nodeLabel"/>
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2"
+                                  spacing="3.0" styleClass="parent">
+                                <DatePicker fx:id="dpPaymentDate" promptText="e.g. 27.03.2016"/>
+                                <Label fx:id="lblPaymentDateError" styleClass="errorLabel"/>
+                            </VBox>
+
+                            <Label fx:id="lblAmount" text="Amount in (Dirham):" GridPane.columnIndex="0"
+                                   GridPane.rowIndex="3" GridPane.valignment="TOP"
+                                   styleClass="nodeLabel"/>
+                            <VBox GridPane.columnIndex="1" GridPane.rowIndex="3" spacing="3.0"
+                                  GridPane.fillWidth="false" styleClass="parent">
+                                <TextField fx:id="tfAmount"
+                                           prefColumnCount="15"/>
+                                <Label fx:id="lblAmountError" styleClass="errorLabel"/>
+                            </VBox>
+
+                            <Label text="Payment method:" GridPane.columnIndex="0"
+                                   GridPane.rowIndex="4" GridPane.valignment="TOP" styleClass="nodeLabel"/>
+                            <VBox spacing="18.0" GridPane.columnIndex="1"
+                                  GridPane.rowIndex="4" styleClass="parent">
+                                <VBox spacing="3.0" styleClass="parent">
+                                    <HBox spacing="10.0" styleClass="parent">
+                                        <RadioButton fx:id="rdCash" text="Cash/Card" toggleGroup="$paymentModeToggle"/>
+                                        <RadioButton fx:id="rdCheque" text="CHECK" toggleGroup="$paymentModeToggle"/>
+                                        <RadioButton fx:id="rdDemandDraft" text="Bank Note"
+                                                     toggleGroup="$paymentModeToggle"/>
+                                        <RadioButton fx:id="rdBankTransfer" text="Transfer"
+                                                     toggleGroup="$paymentModeToggle"/>
+                                    </HBox>
+                                    <Label fx:id="lblPaymentModeError" styleClass="errorLabel"/>
+                                </VBox>
+
+                                <GridPane hgap="8.0" vgap="8.0" fx:id="instrumentDetailsPane"
+                                          managed="false" visible="false" styleClass="parent">
+                                    <Label text="Required inputs are marked with orange color"
+                                           underline="true"
+                                           GridPane.columnSpan="2" styleClass="note"/>
+
+                                    <Label text="Number:" GridPane.rowIndex="1" styleClass="requiredInput"
+                                           GridPane.valignment="TOP"/>
+                                    <VBox spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                          GridPane.fillWidth="false" styleClass="parent">
+                                        <TextField fx:id="tfInstrumentNumber" prefColumnCount="12"/>
+                                        <Label fx:id="lblInstrumentNumberError" styleClass="errorLabel"/>
+                                    </VBox>
+
+                                    <Label text="Date:" GridPane.rowIndex="2" styleClass="requiredInput"
+                                           GridPane.valignment="TOP"/>
+                                    <VBox spacing="3.0" GridPane.columnIndex="1"
+                                          GridPane.rowIndex="2" styleClass="parent">
+                                        <DatePicker fx:id="dpInstrumentDate" promptText="e.g. 27.03.2016"/>
+                                        <Label fx:id="lblInstrumentDateError" styleClass="errorLabel"/>
+                                    </VBox>
+
+                                    <Label text="Designation:" GridPane.rowIndex="3" GridPane.valignment="TOP"
+                                           styleClass="nodeLabel"/>
+                                    <VBox spacing="3.0" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                                          GridPane.fillWidth="false" styleClass="parent">
+                                        <TextField fx:id="tfInstrumentDrawnAt" prefColumnCount="30">
+                                            <tooltip>
+                                                <Tooltip text="Designation"
+                                                />
+                                            </tooltip>
+                                        </TextField>
+                                        <Label fx:id="lblInstrumentDrawnAtError" styleClass="errorLabel"/>
+                                    </VBox>
+
+                                    <Label text="Payment made:" GridPane.rowIndex="4" styleClass="requiredInput"
+                                           GridPane.valignment="TOP"/>
+                                    <VBox spacing="3.0" GridPane.columnIndex="1"
+                                          GridPane.rowIndex="4" styleClass="parent">
+                                        <HBox spacing="10.0" styleClass="parent">
+                                            <RadioButton fx:id="rdRealised" text="Oui"
+                                                         toggleGroup="$paymentReceivedToggle"/>
+                                            <RadioButton fx:id="rdNotRealised" text="Non"
+                                                         toggleGroup="$paymentReceivedToggle"/>
+                                        </HBox>
+                                        <Label fx:id="lblInstrumentRealisedError" styleClass="errorLabel"/>
+                                    </VBox>
+
+                                </GridPane>
+                            </VBox>
+
+                            <TilePane GridPane.columnIndex="0" GridPane.rowIndex="5"
+                                      alignment="TOP_RIGHT" GridPane.columnSpan="2"
+                                      prefColumns="2" hgap="25.0" fx:id="tilePane" styleClass="parent">
+                                <Button fx:id="btnRegisterPayment" text="_Record payment"
+                                        mnemonicParsing="true" onAction="#onRegisterPaymentAction"/>
+                                <Button fx:id="btnClose" text="_Close" maxWidth="$maxDouble"
+                                        cancelButton="true" mnemonicParsing="true" onAction="#onCloseTabAction"/>
+                            </TilePane>
+                        </GridPane>
+
+                        <ImageView fx:id="checkImage" opacity="0">
+                            <image>
+                                <Image url="/resources/images/check.png"/>
+                            </image>
+                        </ImageView>
+                    </StackPane>
+
+                </VBox>
+            </HBox>
+
+
+        </ScrollPane>
+    </center>
+
+
+</BorderPane>
+
+

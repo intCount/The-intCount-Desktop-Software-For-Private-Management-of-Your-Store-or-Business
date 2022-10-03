@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="TOP_CENTER" fillHeight="false" styleClass="rootNode" stylesheets="/resources/stylesheets/about.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="intCount.controller.AboutController">
+              
+
+ <VBox fx:id="contentHolder" prefHeight="444.0" prefWidth="543.0" spacing="20.0">
+      <children>
+         <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="630.0">
+            <children>
+               <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="20.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+               <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="404.0" layoutY="215.0">
+                  <image>
+                     <Image url="/resources/images/intCountPlayStoreApp.png" />
+                  </image>
+               </ImageView>
+               <ImageView layoutX="41.0" layoutY="25.0">
+                  <image>
+                     <Image url="/resources/images/intCountLogo.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="111.0" fitWidth="314.0" layoutX="302.0" layoutY="94.0">
+                  <image>
+                     <Image url="/resources/images/Copyright.png" />
+                  </image>
+               </ImageView>
+               <Label layoutX="17.0" layoutY="238.0" prefHeight="25.0" prefWidth="239.0" text="Author of the Application: " textFill="#1f2220">
+                  <font>
+                     <Font name="Arial Unicode MS" size="18.0" />
+                  </font>
+               </Label>
+               <Label layoutX="228.0" layoutY="45.0" prefHeight="42.0" prefWidth="308.0" text="intCount Invoicing 1.0" textFill="#c50403">
+                  <font>
+                     <Font name="Arial" size="30.0" />
+                  </font>
+               </Label>
+               <Hyperlink layoutX="201.0" layoutY="238.0" prefHeight="23.0" prefWidth="207.0" text="Hicham ALAOUI RIZQ" />
+               <Label layoutX="17.0" layoutY="275.0" prefHeight="29.0" prefWidth="95.0" text="WhatsApp:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink accessibleHelp="https://api.whatsapp.com/send?phone=00212602284421&amp;text=&amp;source=&amp;data=&amp;app_absent=https://api.whatsapp.com/send?phone=00212602284421&amp;text=&amp;source=&amp;data=&amp;app_absent=" accessibleRoleDescription="https://api.whatsapp.com/send?phone=00212602284421&amp;text=&amp;source=&amp;data=&amp;app_absent=https://api.whatsapp.com/send?phone=00212602284421&amp;text=&amp;source=&amp;data=&amp;app_absent=" accessibleText="https://api.whatsapp.com/send?phone=00212602284421&amp;text=&amp;source=&amp;data=&amp;app_absent=https://api.whatsapp.com/send?phone=00212602284421&amp;text=&amp;source=&amp;data=&amp;app_absent=" layoutX="109.0" layoutY="278.0" text="+212602284421" />
+               <Label layoutX="20.0" layoutY="315.0" prefHeight="23.0" prefWidth="62.0" text="Email:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink layoutX="85.0" layoutY="315.0" text="intcountm@gmail.com" />
+               <Hyperlink layoutX="220.0" layoutY="315.0" text="hicham@intcount.com" />
+               <Label layoutX="17.0" layoutY="352.0" text="Youtube:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink accessibleHelp="https://www.youtube.com/channel/UCON-p_Ehb7ivBVIMSY8t3MQhttps://www.youtube.com/channel/UCON-p_Ehb7ivBVIMSY8t3MQ" accessibleRoleDescription="https://www.youtube.com/channel/UCON-p_Ehb7ivBVIMSY8t3MQhttps://www.youtube.com/channel/UCON-p_Ehb7ivBVIMSY8t3MQ" accessibleText="https://www.youtube.com/channel/UCON-p_Ehb7ivBVIMSY8t3MQhttps://www.youtube.com/channel/UCON-p_Ehb7ivBVIMSY8t3MQ" layoutX="97.0" layoutY="352.0" text="intCount" />
+               <Label layoutX="17.0" layoutY="385.0" text="WebSite:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink accessibleHelp="https://intcount.comhttps://intcount.com" accessibleRoleDescription="https://intcount.comhttps://intcount.com" accessibleText="https://intcount.comhttps://intcount.com" layoutX="90.0" layoutY="385.0" text="intcount.com" />
+               <Label layoutX="17.0" layoutY="424.0" text="The intCount mobile application in the PlayStore:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink accessibleHelp="https://play.google.com/store/apps/details?id=com.intCount.aehttps://play.google.com/store/apps/details?id=com.intCount.ae" accessibleRoleDescription="https://play.google.com/store/apps/details?id=com.intCount.aehttps://play.google.com/store/apps/details?id=com.intCount.ae" accessibleText="https://play.google.com/store/apps/details?id=com.intCount.aehttps://play.google.com/store/apps/details?id=com.intCount.ae" layoutX="370.0" layoutY="424.0" text="intCount" />
+               <Label layoutX="17.0" layoutY="443.0" text="instagram:">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink accessibleHelp="https://www.instagram.com/intcount/https://www.instagram.com/intcount/" accessibleRoleDescription="https://www.instagram.com/intcount/https://www.instagram.com/intcount/" accessibleText="https://www.instagram.com/intcount/https://www.instagram.com/intcount/" layoutX="110.0" layoutY="443.0" text="intCount" />
+               <Label layoutX="17.0" layoutY="463.0" text="github">
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Label>
+               <Hyperlink accessibleHelp="" accessibleRoleDescription="" accessibleText="" layoutX="110.0" layoutY="463.0" text="intCount/ Please Read Carefully the License Applied on This Software." />
+            </children>
+         </Pane>
+      </children>
+</VBox>
+</HBox>

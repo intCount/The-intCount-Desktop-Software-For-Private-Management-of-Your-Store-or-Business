@@ -1,0 +1,7 @@
+@import "common.css";
+
+.text-field{
+    -fx-pref-column-count: 28;
+}
+
+

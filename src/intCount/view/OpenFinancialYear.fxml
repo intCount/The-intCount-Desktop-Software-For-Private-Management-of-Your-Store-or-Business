@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+      fx:controller="intCount.controller.OpenFinancialYearController"
+      alignment="TOP_CENTER" fillHeight="false">
+    <stylesheets>
+        <URL value="@/resources/stylesheets/openfinancialyear.css"/>
+    </stylesheets>
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+    <BorderPane styleClass="parent" fx:id="borderPane">
+        <top>
+            <Text fx:id="heading" text="Open fiscal year" BorderPane.alignment="TOP_CENTER">
+                <BorderPane.margin>
+                    <Insets bottom="30.0"/>
+                </BorderPane.margin>
+            </Text>
+        </top>
+        <center>
+            <VBox styleClass="parent" prefWidth="300.0" spacing="5.0">
+                <Label text="_Existing fiscal years: " styleClass="nodeLabel"
+                       mnemonicParsing="true"/>
+                <ListView fx:id="lvwFinancialYears" maxHeight="400.0">
+                    <placeholder>
+                        <Label text="No fiscal year found" styleClass="placeholderText"/>
+                    </placeholder>
+                </ListView>
+                <TilePane prefColumns="2" prefRows="1" alignment="TOP_RIGHT"
+                          styleClass="parent" hgap="25.0">
+                    <VBox.margin>
+                        <Insets top="10.0" right="0.0" bottom="0" left="0"/>
+                    </VBox.margin>
+                    <Button fx:id="btnOpen" text="_Open" mnemonicParsing="true"
+                            maxWidth="$MAX_DOUBLE" onAction="#onOpenFinancialYearAction"/>
+                    <Button fx:id="btnClose" text="_Close" mnemonicParsing="true"
+                            cancelButton="true" onAction="#onCloseTabAction"/>
+                </TilePane>
+            </VBox>
+        </center>
+
+    </BorderPane>
+</HBox>
+

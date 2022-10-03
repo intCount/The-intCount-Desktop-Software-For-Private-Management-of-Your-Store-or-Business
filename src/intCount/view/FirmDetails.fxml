@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.*?>
+
+<HBox xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="intCount.controller.FirmDetailsController" alignment="TOP_CENTER"
+      styleClass="rootNode" fillHeight="false">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/firmdetails.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+
+    <GridPane fx:id="gridPane" hgap="20.0" vgap="15.0" styleClass="parent">
+
+        <Text text="Company details" fx:id="heading"
+              GridPane.columnSpan="3" GridPane.halignment="CENTER"/>
+
+        <Label text="Required inputs are labeled with orange color"
+               styleClass="note" GridPane.columnSpan="3" GridPane.rowIndex="1"
+               GridPane.halignment="CENTER"/>
+
+        <Label alignment="TOP_RIGHT" labelFor="${firmNameField}"
+               mnemonicParsing="true" GridPane.rowIndex="2" text="Name of the company or the Entrepreneur:"
+               textAlignment="RIGHT" GridPane.halignment="RIGHT"
+               GridPane.valignment="TOP" GridPane.vgrow="NEVER" styleClass="requiredInput"/>
+        <VBox alignment="TOP_LEFT" maxWidth="500.0" spacing="3"
+              GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.vgrow="NEVER"
+              styleClass="parent">
+            <TextField fx:id="firmNameField" prefColumnCount="25"
+                       VBox.vgrow="NEVER" promptText="3 to 70 characters"/>
+            <Text fx:id="firmNameError" styleClass="errorLabel" visible="false"/>
+        </VBox>
+
+        <Label alignment="TOP_RIGHT" labelFor="${addressField}"
+               mnemonicParsing="true" text="Company address:" textAlignment="RIGHT"
+               GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+               GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="NEVER"/>
+        <VBox maxHeight="200.0" maxWidth="500.0" spacing="3"
+              GridPane.columnIndex="1" GridPane.fillHeight="true"
+              GridPane.fillWidth="true" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS"
+              GridPane.rowIndex="3" GridPane.valignment="TOP" GridPane.vgrow="NEVER"
+              styleClass="parent">
+            <TextArea fx:id="addressField" prefColumnCount="25"
+                      prefRowCount="5" wrapText="true" VBox.vgrow="ALWAYS" promptText="10 to 120 characters"/>
+            <Text fx:id="addressError" visible="false" VBox.vgrow="NEVER"
+                  styleClass="errorLabel"/>
+        </VBox>
+
+        <Label alignment="TOP_RIGHT" labelFor="${phoneNumbersField}"
+               mnemonicParsing="true" text="_Phone numbers:" textAlignment="RIGHT"
+               GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+               GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="NEVER"
+               styleClass="nodeLabel"/>
+        <TextField fx:id="phoneNumbersField" maxWidth="500.0"
+                   prefColumnCount="25" promptText="Delimit multiple numbers using a comma"
+                   GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.vgrow="NEVER"/>
+
+
+        <Label alignment="TOP_RIGHT" labelFor="${emailAddressField}"
+               mnemonicParsing="true" text="_E-mail address:" textAlignment="RIGHT"
+               GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+               GridPane.rowIndex="5" GridPane.valignment="TOP" GridPane.vgrow="NEVER"
+               styleClass="nodeLabel"/>
+        <TextField fx:id="emailAddressField" maxWidth="500.0"
+                   prefColumnCount="25" GridPane.columnIndex="1" GridPane.rowIndex="5"
+                   GridPane.vgrow="NEVER"/>
+
+
+        <Label alignment="TOP_RIGHT" labelFor="${taxeProfessionnel}"
+               mnemonicParsing="true" text="_Professional tax:" textAlignment="RIGHT"
+               GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+               GridPane.rowIndex="6" GridPane.valignment="TOP" GridPane.vgrow="NEVER"
+               styleClass="nodeLabel"/>
+        <TextField fx:id="taxeProfessionnelField" maxWidth="500.0"
+                   prefColumnCount="25" GridPane.columnIndex="1" GridPane.rowIndex="6"
+                   GridPane.vgrow="NEVER"/>
+
+
+        <TextField fx:id="registreDeCommerceField" maxWidth="500.0"
+                   prefColumnCount="25" promptText="Registre de commerce"
+                   GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.vgrow="NEVER">
+            <tooltip>
+                <Tooltip text="Trade Register Number"/>
+            </tooltip>
+        </TextField>
+
+        <TextField fx:id="identificationFiscalField" maxWidth="500.0"
+                   prefColumnCount="25" promptText="identification Fiscal"
+                   GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.vgrow="NEVER">
+            <tooltip>
+                <Tooltip text="Tax identification (IF)"/>
+            </tooltip>
+        </TextField>
+
+        <TextField fx:id="numeroDeCnssField" maxWidth="500.0"
+                   prefColumnCount="25" promptText="CIN"
+                   GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+            <tooltip>
+                <Tooltip text="CIN number"/>
+            </tooltip>
+        </TextField>
+
+        <TextField fx:id="iceField" maxWidth="500.0"
+                   prefColumnCount="25" promptText="ICE" GridPane.columnIndex="2"
+                   GridPane.rowIndex="5" GridPane.vgrow="NEVER">
+            <tooltip>
+                <Tooltip text="Ice"/>
+            </tooltip>
+        </TextField>
+
+        <TextField fx:id="bankAccountField" maxWidth="500.0"
+                   prefColumnCount="25" promptText="Bank Account Number"
+                   GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.vgrow="NEVER">
+            <tooltip>
+                <Tooltip text="Bank Account Number"/>
+            </tooltip>
+        </TextField>
+
+        <Label alignment="TOP_RIGHT" text="Company Logo:"
+               textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="7"
+               GridPane.valignment="TOP" styleClass="nodeLabel"/>
+        <HBox spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="7"
+              fx:id="logoContainer" styleClass="parent" alignment="BOTTOM_LEFT">
+            <ImageView fx:id="logoView" preserveRatio="true"
+                       HBox.hgrow="NEVER" fitHeight="64" smooth="true"/>
+            <Button fx:id="logoButton" mnemonicParsing="true"
+                    text="Select Logo..." onAction="#onLogoSelectAction"/>
+            <Button fx:id="deleteLogoButton" mnemonicParsing="true"
+                    disable="true" text="_Delete Logo" onAction="#onDeleteLogoAction"/>
+        </HBox>
+
+        <Separator GridPane.columnIndex="0" GridPane.rowIndex="8"
+                   GridPane.columnSpan="2" orientation="HORIZONTAL"/>
+
+        <TilePane GridPane.columnSpan="2" GridPane.rowIndex="9"
+                  alignment="TOP_RIGHT" GridPane.vgrow="NEVER" styleClass="parent"
+                  hgap="25.0" prefColumns="2">
+            <Button fx:id="okButton" disable="true" onAction="#onOKCommand"
+                    text="_OK" mnemonicParsing="true" maxWidth="$MAX_DOUBLE"/>
+            <Button fx:id="cancelButton" onAction="#onCancelCommand"
+                    mnemonicParsing="true" cancelButton="true" text="_Cancel"/>
+        </TilePane>
+
+    </GridPane>
+
+</HBox>
+

@@ -1,0 +1,57 @@
+@import "common.css";
+
+.rootNode{
+    -fx-padding: 15px 50px 20px 50px;
+}
+
+#scrollPane{
+    -fx-border-width:1px;
+    -fx-border-color: -lookupBorder;
+    -fx-border-insets: 10px -15px -10px -15px;
+    -fx-padding: 15px 10px 10px 0;
+}
+
+#searchCriteriaPane{
+   -fx-padding: 0 0 10px 0;
+}
+
+#criteriaContainer{
+    -fx-padding: 10px 15px 10px 15px;
+}
+
+#betweenDatesPane{
+    -fx-padding: 0 0 0 10px;
+}
+
+
+#paymentModeContainer{
+   -fx-padding: 0 0 0 10px;
+}
+
+#customersPane{
+    -fx-padding: 0 0 0 10px;
+}
+
+#searchResultPane{
+   -fx-padding: 0 0 0 0;
+}
+
+#rightButtonsBar{
+   -fx-padding: 0 0 0 10px;
+}
+
+.subHeading{
+    -fx-font-weight: bold;
+   -fx-text-fill: maroon;
+}
+
+#tfSearchCustomer{
+    -fx-background-image: url(/resources/images/search_16.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 97%, 4;
+    -fx-padding: 3px 27px 3px 7px;
+}
+
+
+
+

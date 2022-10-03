@@ -1,0 +1,58 @@
+@import "common.css";
+
+.rootNode{
+    -fx-padding: 10px 50px 20px 50px;
+}
+
+#titledPane{
+    -fx-padding: 0 0 15px 0;
+}
+
+#criteriaPane{
+   -fx-padding: 15px 15px 10px 15px;
+}
+
+#buttonContainer{
+    -fx-margin: 30px 0 0 0; 
+}
+
+#entriesPane{
+    -fx-padding: 0 0 15px 0;
+}
+
+#rightBar{
+   -fx-padding:0 5px 0 10px;
+}
+
+#summaryBar{
+   -fx-padding: 10px 10px 2px 0;
+}
+
+.summaryNode{
+    -fx-font-weight: bold;
+}
+
+#tfAccountBalance{
+    -fx-text-fill: brown;
+    -fx-font-weight: bold;
+}
+
+.descriptionCell{
+    -fx-padding: 4px 4px 4px 10px;
+}
+
+.amountCell{
+    -fx-padding: 4px 15px 4px 0;
+}
+
+#scrollPane{
+    -fx-border-width: 1px;
+    -fx-border-insets: -10px -20px -10px -20px;
+    -fx-border-color: -lookupBorder;
+}
+
+#contentHolder{
+    -fx-padding: 10px 0 0 0;
+}
+
+

@@ -1,0 +1,39 @@
+@import "common.css";
+
+#updateButtonsPane{
+   -fx-border-width: 1px; 
+   -fx-padding: 3px;
+   -fx-border-color: gray; 
+}
+
+.summation{
+    -fx-font-weight: bold;
+}
+
+.rootNode{ /* scroll pane */
+    -fx-padding: 10px 40px 10px 40px;
+    -fx-background-color:  #FFE4A8;
+}
+
+#rootContainer{ /* border pane */
+    -fx-padding: 15px;
+    -fx-border-width: 1px;
+    -fx-border-color: -lookupBorder;
+}
+
+.numeric-cell{
+    -fx-padding: 4px 10px 4px 0;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.character-cell{
+    -fx-padding: 4px 0 4px 10px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+
+
+
+
+
+

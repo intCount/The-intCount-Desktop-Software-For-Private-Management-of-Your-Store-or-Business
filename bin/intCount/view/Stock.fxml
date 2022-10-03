@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+      fx:controller="intCount.controller.StockController" alignment="TOP_CENTER">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/items.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets left="50.0" right="20.0" top="15.0" bottom="10.0"/>
+    </padding>
+
+    <fx:define>
+        <ToggleGroup fx:id="newOrEditToggle"/>
+        <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+    </fx:define>
+
+    <BorderPane fx:id="content">
+        <top>
+            <VBox fillWidth="true" spacing="20.0" styleClass="parent">
+                <BorderPane.margin>
+                    <Insets bottom="10.0"/>
+                </BorderPane.margin>
+                <Label text="Inventory" underline="true" alignment="CENTER"
+                       textAlignment="CENTER" maxWidth="$maxDouble" fx:id="heading"/>
+            </VBox>
+        </top>
+        <center>
+            <BorderPane styleClass="parent" BorderPane.alignment="TOP_LEFT">
+
+                <center>
+                    <VBox spacing="5.0">
+                        <StackPane alignment="CENTER" VBox.vgrow="ALWAYS">
+                            <TableView fx:id="tableView" minWidth="150" minHeight="150"
+                                       maxHeight="$maxDouble" VBox.vgrow="ALWAYS">
+                                <placeholder>
+                                    <Label text="&lt; No item defined &gt;" fx:id="placeholderText"/>
+                                </placeholder>
+                                <columns>
+                                    <TableColumn fx:id="ArticlesColumn" prefWidth="170"
+                                                 text="Item Name">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="unitName"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="DateEntreeColumn" text="Last Entry"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="StockInitialColumn" text="Initial stock"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="DateSortieColumn" text="Last Release"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="StockEnMvtColumn" text="Moving Stock"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="StockActuelColumn" text="Current inventory"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                                <placeholder>
+                                    <Label text="&lt; No measurement unit defined &gt;"
+                                           fx:id="placeholderText"/>
+                                </placeholder>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                            <ImageView fx:id="checkImage" opacity="0">
+                                <image>
+                                    <Image url="/resources/images/check.png"/>
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                    </VBox>
+
+                </center>
+
+            </BorderPane>
+        </center>
+
+    </BorderPane>
+</HBox>
+

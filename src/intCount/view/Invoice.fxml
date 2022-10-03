@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+
+<HBox styleClass="rootNode" alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="intCount.controller.InvoiceController">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/invoice.css"/>
+    </stylesheets>
+
+    <ScrollPane styleClass="parent" fx:id="scrollPane">
+        <HBox alignment="TOP_CENTER" styleClass="parent"
+              minWidth="${scrollPane.viewportBounds.width}">
+            <BorderPane fx:id="rootContainer" styleClass="parent">
+                <fx:define>
+                    <ToggleGroup fx:id="newOrEditToggle"/>
+                    <ToggleGroup fx:id="cashOrCreditToggle"/>
+                    <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+                </fx:define>
+                <top>
+                    <VBox spacing="8.0" styleClass="parent">
+                        <BorderPane.margin>
+                            <Insets bottom="10.0"/>
+                        </BorderPane.margin>
+                        <Label text="Invoice" underline="true" alignment="CENTER"
+                               textAlignment="CENTER" maxWidth="$maxDouble" fx:id="heading"/>
+                        <AnchorPane styleClass="parent">
+                            <HBox spacing="10.0" AnchorPane.leftAnchor="0.0"
+                                  AnchorPane.topAnchor="0.0" styleClass="parent">
+                                <Label text="Billing date:" labelFor="$dpInvoiceDate"
+                                       styleClass="nodeLabel"/>
+                                <VBox spacing="3.0" styleClass="parent">
+                                    <DatePicker fx:id="dpInvoiceDate" promptText="e.g. 27.03.2016"/>
+                                    <Label fx:id="lblDateError" managed="false" visible="false"
+                                           styleClass="errorLabel"/>
+                                </VBox>
+                            </HBox>
+                            <VBox spacing="8.0" AnchorPane.rightAnchor="10.0"
+                                  AnchorPane.topAnchor="0.0" alignment="TOP_RIGHT" styleClass="parent">
+                                <HBox spacing="10.0" alignment="TOP_RIGHT" styleClass="parent">
+                                    <Label text="Types:" styleClass="nodeLabel"/>
+                                    <RadioButton fx:id="devisInvoice" text="Quotation"
+                                                 toggleGroup="$cashOrCreditToggle" selected="true"/>
+                                    <RadioButton fx:id="cashInvoice" text="Invoice"
+                                                 toggleGroup="$cashOrCreditToggle" selected="true"/>
+                                    <RadioButton fx:id="creditInvoice" text="CreditInvoice"
+                                                 toggleGroup="$cashOrCreditToggle"/>
+                                </HBox>
+                                <HBox spacing="10.0" managed="true" visible="true"
+                                      fx:id="customersContainer" styleClass="parent">
+                                    <Label text="Customer" styleClass="nodeLabel"/>
+                                    <VBox spacing="3.0" styleClass="parent">
+                                        <TextField fx:id="tfCustomer" prefColumnCount="25"
+                                                   promptText="&lt;Customer names appear when typing&gt;"/>
+                                        <Label fx:id="lblCustomerError" managed="false" visible="false"
+                                               styleClass="errorLabel"/>
+                                    </VBox>
+                                </HBox>
+                            </VBox>
+                        </AnchorPane>
+                    </VBox>
+                </top>
+                <center>
+                    <BorderPane styleClass="parent">
+                        <top>
+                            <GridPane hgap="10.0" vgap="3.0" styleClass="parent">
+                                <Label GridPane.columnIndex="0" GridPane.rowIndex="0"
+                                       text="Item:" styleClass="nodeLabel"/>
+                                <Label GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                       text="Unit:" styleClass="nodeLabel"/>
+                                <Label GridPane.columnIndex="2" GridPane.rowIndex="0"
+                                       text="Rate (en DH )" styleClass="nodeLabel"/>
+                                <Label GridPane.columnIndex="3" GridPane.rowIndex="0"
+                                       text="Quantity:" styleClass="nodeLabel"/>
+                                <Label GridPane.columnIndex="4" GridPane.rowIndex="0"
+                                       text="Amount (en DH )" styleClass="nodeLabel"/>
+                                <Label GridPane.columnIndex="5" GridPane.rowIndex="0"
+                                       text="VAT:" styleClass="nodeLabel"/>
+                                <VBox spacing="3" GridPane.columnIndex="0"
+                                      GridPane.rowIndex="1" styleClass="parent">
+                                    <TextField fx:id="tfItem" prefColumnCount="25"
+                                               promptText="&lt;Item names appear as you type  &gt;"/>
+                                    <Label fx:id="lblItemError" managed="false" visible="false"
+                                           styleClass="errorLabel"/>
+                                </VBox>
+                                <VBox GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                      spacing="3" styleClass="parent">
+                                    <ComboBox fx:id="cbUnit" minWidth="100"/>
+                                    <Label fx:id="lblUnitError" managed="false" visible="false"
+                                           styleClass="errorLabel"/>
+                                </VBox>
+                                <VBox GridPane.columnIndex="2" GridPane.rowIndex="1"
+                                      spacing="3" styleClass="parent">
+                                    <TextField fx:id="tfRate" prefColumnCount="7"
+                                               onMouseClicked="#methodToBeCalled"/>
+                                    <Label fx:id="lblRateError" managed="false" visible="false"
+                                           styleClass="errorLabel"/>
+                                </VBox>
+                                <VBox spacing="3" GridPane.columnIndex="3"
+                                      GridPane.rowIndex="1" styleClass="parent">
+                                    <TextField fx:id="tfQuantity" prefColumnCount="5"/>
+                                    <Label fx:id="lblQuantityError" managed="false" visible="false"
+                                           styleClass="errorLabel"/>
+                                </VBox>
+                                <TextField GridPane.columnIndex="4" GridPane.rowIndex="1"
+                                           focusTraversable="false" fx:id="tfAmount" editable="false"
+                                           prefColumnCount="8" styleClass="readOnlyField"
+                                           GridPane.valignment="TOP"/>
+
+                                <VBox GridPane.columnIndex="5" GridPane.rowIndex="1"
+                                      spacing="3" styleClass="parent">
+                                    <ComboBox fx:id="cbTva" minWidth="100"/>
+                                    <Label fx:id="lblUnitError" managed="false" visible="false"
+                                           styleClass="errorLabel"/>
+                                </VBox>
+
+
+                                <HBox spacing="20.0" GridPane.columnIndex="6"
+                                      GridPane.rowIndex="1" GridPane.valignment="TOP">
+                                    <Button fx:id="btnAdd" minWidth="50" text="Add"
+                                            disable="true" onAction="#onInvoiceItemAddAction"/>
+                                    <HBox styleClass="parent" fx:id="updateButtonsPane"
+                                          spacing="10.0">
+                                        <RadioButton fx:id="rdNew" text="Add Item"
+                                                     selected="true" toggleGroup="$newOrEditToggle"/>
+                                        <RadioButton fx:id="rdEdit" text="Edit Item"
+                                                     toggleGroup="$newOrEditToggle"/>
+                                    </HBox>
+                                </HBox>
+                            </GridPane>
+                        </top>
+                        <center>
+                            <BorderPane styleClass="parent">
+                                <BorderPane.margin>
+                                    <Insets top="10.0"/>
+                                </BorderPane.margin>
+                                <center>
+                                    <VBox spacing="7.0" styleClass="parent">
+                                        <VBox spacing="3.0" VBox.vgrow="ALWAYS" styleClass="parent">
+                                            <StackPane alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+                                                <TableView fx:id="tableView" prefHeight="200"
+                                                           maxHeight="$maxDouble" VBox.vgrow="ALWAYS">
+                                                    <columns>
+                                                        <TableColumn fx:id="itemColumn" text="Item"
+                                                                     minWidth="150" prefWidth="370">
+                                                            <cellValueFactory>
+                                                                <PropertyValueFactory property="item"/>
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+                                                        <TableColumn fx:id="unitColumn" text="Unit"
+                                                                     minWidth="70" prefWidth="120">
+                                                            <cellValueFactory>
+                                                                <PropertyValueFactory property="unit"/>
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+                                                        <TableColumn fx:id="rateColumn"
+                                                                     text="Rate (In DH )" minWidth="70"
+                                                                     prefWidth="120">
+                                                            <cellValueFactory>
+                                                                <PropertyValueFactory property="rate"/>
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+                                                        <TableColumn fx:id="quantityColumn" text="Quantity"
+                                                                     minWidth="70" prefWidth="120">
+                                                            <cellValueFactory>
+                                                                <PropertyValueFactory property="quantity"/>
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+                                                        <TableColumn fx:id="amountColumn"
+                                                                     text="Amount In (Dirham)" minWidth="90"
+                                                                     prefWidth="140">
+                                                        </TableColumn>
+                                                        <TableColumn fx:id="tvaColumn" text="Tva"
+                                                                     minWidth="90" prefWidth="140">
+                                                            <cellValueFactory>
+                                                                <PropertyValueFactory property="tva"/>
+                                                            </cellValueFactory>
+                                                        </TableColumn>
+                                                    </columns>
+                                                    <columnResizePolicy>
+                                                        <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                                    </columnResizePolicy>
+                                                    <placeholder>
+                                                        <Label text="&lt;No item added&gt;"
+                                                               fx:id="placeholderText"/>
+                                                    </placeholder>
+                                                </TableView>
+                                                <ImageView fx:id="checkImage" opacity="0">
+                                                    <image>
+                                                        <Image url="/resources/images/check.png"/>
+                                                    </image>
+                                                </ImageView>
+                                            </StackPane>
+                                            <Label fx:id="lblNoItemError" managed="false" visible="false"
+                                                   styleClass="errorLabel"/>
+                                        </VBox>
+                                        <VBox spacing="6.0" VBox.vgrow="NEVER" styleClass="parent">
+                                            <AnchorPane styleClass="parent">
+                                                <HBox spacing="15.0" AnchorPane.topAnchor="0.0"
+                                                      AnchorPane.leftAnchor="0.0" styleClass="parent">
+                                                    <Button fx:id="btnRefreshCustomers" styleClass="graphicButton"
+                                                            onAction="#onCustomersRefreshAction">
+                                                        <graphic>
+                                                            <ImageView>
+                                                                <image>
+                                                                    <Image url="/resources/images/refresh_customer.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                        <tooltip>
+                                                            <Tooltip text="Refresh the list of customers"/>
+                                                        </tooltip>
+                                                    </Button>
+                                                    <Button fx:id="btnRefreshItems" styleClass="graphicButton"
+                                                            onAction="#onItemsRefreshAction">
+                                                        <graphic>
+                                                            <ImageView>
+                                                                <image>
+                                                                    <Image url="/resources/images/refresh_item.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                        <tooltip>
+                                                            <Tooltip text="Refresh the list of items"/>
+                                                        </tooltip>
+                                                    </Button>
+                                                    <Button fx:id="btnRefreshUnits" styleClass="graphicButton"
+                                                            onAction="#onUnitsRefreshAction">
+                                                        <graphic>
+                                                            <ImageView>
+                                                                <image>
+                                                                    <Image url="/resources/images/refresh_measurement_unit.png"/>
+                                                                </image>
+                                                            </ImageView>
+                                                        </graphic>
+                                                        <tooltip>
+                                                            <Tooltip text="Refresh list of measurement units"/>
+                                                        </tooltip>
+                                                    </Button>
+                                                </HBox>
+
+                                                <HBox spacing="5.0" alignment="TOP_RIGHT" styleClass="parent"
+                                                      AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+                                                    <Label text="Subtotal ( en DH):"
+                                                           labelFor="$tfTotal" styleClass="nodeLabel"/>
+                                                    <TextField fx:id="tfTotal" prefColumnCount="12"
+                                                               focusTraversable="false" editable="false"
+                                                               alignment="CENTER_RIGHT"
+                                                               styleClass="readOnlyField"/>
+                                                </HBox>
+
+
+                                            </AnchorPane>
+
+                                            <HBox spacing="5.0" alignment="TOP_RIGHT" styleClass="parent">
+                                                <Label
+                                                        text="Less: discount (if applicable)(DH):"
+                                                        labelFor="$tfDiscount" styleClass="nodeLabel"/>
+                                                <VBox spacing="3" styleClass="parent">
+                                                    <TextField fx:id="tfDiscount" prefColumnCount="12"
+                                                               alignment="CENTER_RIGHT"/>
+                                                    <Label fx:id="lblDiscountError" managed="false"
+                                                           visible="false" styleClass="errorLabel"/>
+                                                </VBox>
+                                            </HBox>
+                                            <HBox spacing="5.0" alignment="TOP_RIGHT" styleClass="parent">
+                                                <Label
+                                                        text="Plus: additional fees (if applicable)(DH):"
+                                                        labelFor="$tfCharge" styleClass="nodeLabel"/>
+                                                <VBox spacing="3" styleClass="parent">
+                                                    <TextField fx:id="tfCharge" prefColumnCount="12"
+                                                               alignment="CENTER_RIGHT"/>
+                                                    <Label fx:id="lblChargeError" managed="false"
+                                                           visible="false" styleClass="errorLabel"/>
+                                                </VBox>
+                                            </HBox>
+                                            <HBox spacing="5.0" alignment="TOP_RIGHT" styleClass="parent">
+                                                <Label text="Net(DH):"
+                                                       labelFor="$tfNetAmount" styleClass="summation,nodeLabel"/>
+                                                <TextField fx:id="tfNetAmount" prefColumnCount="11"
+                                                           editable="false" focusTraversable="false"
+                                                           alignment="CENTER_RIGHT"
+                                                           styleClass="readOnlyField,summation"/>
+                                            </HBox>
+                                            <HBox spacing="5.0" alignment="TOP_RIGHT" styleClass="parent">
+                                                <Label text="TTC (Dirham):"
+                                                       labelFor="$tfTtcAmount" styleClass="summation,nodeLabel"/>
+                                                <TextField fx:id="tfTtcAmount" prefColumnCount="11"
+                                                           editable="false" focusTraversable="false"
+                                                           alignment="CENTER_RIGHT"
+                                                           styleClass="readOnlyField,summation"/>
+                                            </HBox>
+                                        </VBox>
+                                    </VBox>
+                                </center>
+                                <right>
+                                    <VBox styleClass="parent">
+                                        <BorderPane.margin>
+                                            <Insets left="10.0"/>
+                                        </BorderPane.margin>
+                                        <Button fx:id="btnDelete" text="Delete"
+                                                onAction="#onInvoiceItemDeleteAction"/>
+                                    </VBox>
+                                </right>
+                            </BorderPane>
+                        </center>
+                    </BorderPane>
+                </center>
+                <bottom>
+                    <VBox spacing="10.0">
+                        <BorderPane.margin>
+                            <Insets top="15.0"/>
+                        </BorderPane.margin>
+                        <Separator/>
+                        <HBox alignment="BOTTOM_RIGHT" spacing="25.0" styleClass="parent">
+                            <children>
+                                <CheckBox fx:id="chkPrintOnSave" text="Printing while saving"
+                                          selected="true" styleClass="nodeLabel">
+                                    <tooltip>
+                                        <Tooltip text="Print the invoice when saving it"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <TilePane prefColumns="2" hgap="25.0">
+                                    <Button fx:id="btnSave" text="_Save"
+                                            mnemonicParsing="true" TilePane.alignment="BOTTOM_RIGHT"
+                                            maxWidth="$maxDouble" onAction="#onSaveInvoiceAction"/>
+                                    <Button fx:id="btnClose" text="_Close" mnemonicParsing="true"
+                                            maxWidth="$maxDouble" TilePane.alignment="BOTTOM_RIGHT"
+                                            onAction="#onCloseTabAction" cancelButton="true"/>
+                                </TilePane>
+                            </children>
+                        </HBox>
+                    </VBox>
+
+                </bottom>
+
+            </BorderPane>
+        </HBox>
+    </ScrollPane>
+</HBox> 
+
+

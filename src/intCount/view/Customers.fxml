@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.65"
+            xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+            fx:controller="intCount.controller.CustomersController">
+
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+    </fx:define>
+    <stylesheets>
+        <URL value="@/resources/stylesheets/customers.css"/>
+    </stylesheets>
+
+    <top>
+        <Text fx:id="heading" text="Customers" BorderPane.alignment="TOP_CENTER">
+            <BorderPane.margin>
+                <Insets bottom="15.0" top="0" right="0" left="0"/>
+            </BorderPane.margin>
+        </Text>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.37" styleClass="parent" fx:id="splitPane">
+            <items>
+                <BorderPane minWidth="200.0" styleClass="parent">
+                    <padding>
+                        <Insets left="0" right="15.0" top="10.0"/>
+                    </padding>
+                    <top>
+                        <Label text="Existing customers:" styleClass="nodeLabel">
+                            <BorderPane.margin>
+                                <Insets bottom="3.0" left="0" right="0" top="0"/>
+                            </BorderPane.margin>
+                        </Label>
+                    </top>
+                    <center>
+                        <ListView fx:id="lwCustomers">
+                            <placeholder>
+                                <Label text="&lt; No customer defined &gt;" fx:id="placeholderText"/>
+                            </placeholder>
+                        </ListView>
+                    </center>
+                    <bottom>
+                        <VBox spacing="12.0">
+                            <BorderPane.margin>
+                                <Insets right="10.0" top="10.0" bottom="5.0"/>
+                            </BorderPane.margin>
+                            <TextField fx:id="tfSearchCustomer" promptText="Type to search for a customer(s)">
+                                <tooltip>
+                                    <Tooltip
+                                            text="Enter the full or partial name of the customer to search for the corresponding name(s)."/>
+                                </tooltip>
+                            </TextField>
+                            <TilePane prefColumns="3" alignment="BOTTOM_LEFT" hgap="25.0"
+                                      vgap="10.0" styleClass="parent">
+                                <children>
+                                    <Button fx:id="btnNew" mnemonicParsing="true" text="_New..."
+                                            TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble"
+                                            onAction="#onNewCustomerAction"/>
+                                    <Button fx:id="btnEdit" mnemonicParsing="true" text="_Edit..."
+                                            TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble"
+                                            onAction="#onEditCustomerAction"/>
+                                    <Button fx:id="btnDelete" mnemonicParsing="true" text="_Delete"
+                                            TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble"
+                                            onAction="#onDeleteCustomerAction"/>
+                                </children>
+                            </TilePane>
+                        </VBox>
+
+                    </bottom>
+
+                </BorderPane>
+
+                <BorderPane styleClass="parent">
+                    <padding>
+                        <Insets left="20.0" right="0.0" top="20.0"/>
+                    </padding>
+                    <center>
+                        <StackPane BorderPane.alignment="TOP_CENTER" alignment="CENTER">
+                            <GridPane hgap="15.0" vgap="15.0" styleClass="parent">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="NEVER"/>
+                                    <ColumnConstraints hgrow="ALWAYS"/>
+                                </columnConstraints>
+                                <children>
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="0" text="_Name:"
+                                           mnemonicParsing="true" labelFor="${tfName}" styleClass="nodeLabel"/>
+                                    <TextField fx:id="tfName" GridPane.columnIndex="1"
+                                               focusTraversable="false" GridPane.rowIndex="0" prefColumnCount="25"
+                                               editable="false" styleClass="readOnlyField"/>
+
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="1"
+                                           styleClass="nodeLabel" text="_Address:" mnemonicParsing="true"
+                                           labelFor="${tfCity}"/>
+                                    <TextField fx:id="tfCity" GridPane.columnIndex="1"
+                                               focusTraversable="false" GridPane.rowIndex="1" prefColumnCount="25"
+                                               editable="false" styleClass="readOnlyField"/>
+
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="2"
+                                           styleClass="nodeLabel" text="_Phone Number:" mnemonicParsing="true"
+                                           labelFor="${tfphoneNumbers}"/>
+                                    <TextField fx:id="tfPhoneNumbers" GridPane.columnIndex="1"
+                                               focusTraversable="false" GridPane.rowIndex="2" prefColumnCount="25"
+                                               editable="false" styleClass="readOnlyField"/>
+
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="3"
+                                           styleClass="nodeLabel" text="_ICE:" mnemonicParsing="true"
+                                           labelFor="${tfice}"/>
+                                    <TextField fx:id="tfIce" GridPane.columnIndex="1"
+                                               focusTraversable="false" GridPane.rowIndex="3" prefColumnCount="25"
+                                               editable="false" styleClass="readOnlyField"/>
+
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="4"
+                                           styleClass="nodeLabel" text="_Professional tax:" mnemonicParsing="true"
+                                           labelFor="${tftaxePro}"/>
+                                    <TextField fx:id="tfTaxePro" GridPane.columnIndex="1"
+                                               focusTraversable="false" GridPane.rowIndex="4" prefColumnCount="25"
+                                               editable="false" styleClass="readOnlyField"/>
+
+                                    <Label GridPane.columnIndex="0" GridPane.rowIndex="5"
+                                           styleClass="nodeLabel" text="_Opening balance (Dirham):"
+                                           mnemonicParsing="true" labelFor="${tfOpeningBalance}"/>
+                                    <TextField fx:id="tfOpeningBalance" GridPane.columnIndex="1"
+                                               focusTraversable="false" GridPane.rowIndex="5" prefColumnCount="25"
+                                               editable="false" styleClass="readOnlyField"/>
+
+
+                                </children>
+                            </GridPane>
+                            <ImageView fx:id="checkImage" opacity="0">
+                                <image>
+                                    <Image url="/resources/images/check.png"/>
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                    </center>
+                    <bottom>
+                        <VBox spacing="20.0">
+                            <Separator orientation="HORIZONTAL"/>
+                            <TilePane prefColumns="2" hgap="25.0" vgap="10.0"
+                                      alignment="BOTTOM_RIGHT" styleClass="parent">
+                                <BorderPane.margin>
+                                    <Insets top="10.0" right="10.0" bottom="5.0"/>
+                                </BorderPane.margin>
+                                <children>
+                                    <Button fx:id="btnSave" mnemonicParsing="true" text="_Save"
+                                            TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble"
+                                            onAction="#onSaveAction"/>
+                                    <Button fx:id="btnClose" mnemonicParsing="true" text="_Close"
+                                            cancelButton="true" TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble"
+                                            onAction="#onCloseAction"/>
+                                </children>
+                            </TilePane>
+                        </VBox>
+
+                    </bottom>
+
+                </BorderPane>
+
+            </items>
+        </SplitPane>
+    </center>
+
+</BorderPane>

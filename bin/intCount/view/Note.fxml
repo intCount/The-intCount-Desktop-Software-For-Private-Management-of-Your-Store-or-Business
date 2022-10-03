@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="intCount.controller.NoteController" styleClass="rootNode">
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu text="NoteBook">
+                    <items>
+                        <MenuItem fx:id="newItem" text="New" onAction="#newFile"></MenuItem>
+                        <MenuItem text="Open..." onAction="#openFile"></MenuItem>
+                        <MenuItem text="Save" onAction="#saveFile"></MenuItem>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <TextArea fx:id="textpane">
+        </TextArea>
+    </center>
+</BorderPane>

@@ -1,0 +1,22 @@
+@import "common.css";
+
+#tfSearchCustomer{
+    -fx-background-image: url(/resources/images/search_16.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 97%, 4;
+    -fx-padding: 3px 27px 3px 7px;
+}
+
+.rootNode{
+    -fx-padding: 20px 50px 25px 50px;
+    -fx-border-width: 1px;
+    -fx-border-color: -lookupBorder;
+    -fx-border-insets: 15px 30px 15px 30px;
+}
+
+#splitPane{
+    -fx-border-width: 1px 0 0 0;
+    -fx-border-color: -lookupBorder;
+}
+
+

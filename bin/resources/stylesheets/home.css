@@ -1,0 +1,224 @@
+@import "common.css";
+
+#tabPane{
+    -fx-background-color:  #FFE4A8;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: burlywood;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: brown;
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: cornsilk;
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: bisque;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    /*-fx-fill: antiquewhite;*/
+    -fx-background-color: antiquewhite;
+}
+
+.menu-bar{
+    -fx-background-color:  bisque;
+}
+
+.menu{
+    -fx-font-weight: bold;
+}
+
+.menu-item{
+    -fx-font-weight: normal;
+}
+
+.menu-item > .label{
+    -fx-graphic-text-gap: 10px;
+}
+
+#createFinancialYearMenuItem > .label{
+    -fx-graphic: url("/resources/images/create_year.png");
+}
+
+.menu-item > .label.accelerator-text{
+    -fx-graphic: none !important;
+    -fx-text-fill: sienna;
+    -fx-font-weight: bold;
+}
+
+#firmDetailsMenuItem > .label{
+    -fx-graphic: url("/resources/images/shop_24.png");
+}
+
+#measurementUnitsMenuItem > .label{
+    -fx-graphic: url("/resources/images/measurement_unit.png");
+}
+
+#itemsMenuItem > .label{
+    -fx-graphic: url("/resources/images/item.png");
+}
+
+#exitMenuItem > .label{
+    -fx-graphic: url("/resources/images/exit.png");
+}
+
+#openFinancialYearMenuItem > .label{
+     -fx-graphic: url("/resources/images/open_24.png");
+}
+
+#closeFinancialYearMenuItem > .label{
+     -fx-graphic: url("/resources/images/close_year_24.png");
+}
+
+#deleteFinancialYearMenuItem > .label{
+     -fx-graphic: url("/resources/images/delete_24.png");
+}
+
+#createInvoiceMenuItem > .label{
+     -fx-graphic: url("/resources/images/invoice_24.png");
+}
+
+#searchInvoiceMenuItem > .label{
+     -fx-graphic: url("/resources/images/search_invoice_24.png");
+}
+
+#paymentReceivedMenuItem > .label{
+     -fx-graphic: url("/resources/images/payment_24.png");
+}
+
+#paymentSearchMenuItem > .label{
+     -fx-graphic: url("/resources/images/search_payment_24.png");
+}
+
+#customersMenuItem > .label{
+     -fx-graphic: url("/resources/images/customer_24.png");
+}
+
+#customerAccountMenuItem > .label{
+     -fx-graphic: url("/resources/images/customer_account_24.png");
+}
+
+#appDataLocationMenuItem > .label{
+     -fx-graphic: url("/resources/images/data_location_24.png");
+}
+
+#userPreferencesMenuItem > .label{
+     -fx-graphic: url("/resources/images/configuration_24.png");
+}
+
+#aboutMenuItem > .label{
+     -fx-graphic: url("/resources/images/about_24.png");
+}
+
+#backupDatabaseMenuItem > .label{
+     -fx-graphic: url("/resources/images/backup_24.png");
+}
+
+#restoreDatabaseMenuItem > .label{
+     -fx-graphic: url("/resources/images/restore_24.png");
+}
+
+#compactDatabaseMenuItem > .label{
+     -fx-graphic: url("/resources/images/compact_24.png");
+}
+
+#hideToolbarMenuItem > .label{
+     -fx-graphic: url("/resources/images/hide.png");
+}
+
+.tool-bar{
+    -fx-padding: 4px 10px 4px 35px;
+    -fx-background-color: papayawhip;
+}
+
+.tool-bar  .label{
+    -fx-padding: 2px 4px 2px 4px;
+     -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.tool-bar  .label:hover,
+.tool-bar  .label:focused
+{
+    -fx-border-color: maroon;
+    -fx-background-color: derive(papayawhip, -2%);
+    
+}
+
+.tool-bar .label:pressed{
+    -fx-effect: dropshadow(two-pass-box, derive(darkgray, -40%), 10, 0.0 , 0, 1);
+    -fx-background-color: derive(papayawhip, -5%);
+    -fx-border-color: maroon;
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
+
+#lblCreateInvoice{
+     -fx-graphic: url("/resources/images/invoice_24.png");
+}
+
+#lblSearchInvoice{
+     -fx-graphic: url("/resources/images/search_invoice_24.png");
+}
+
+.tool-bar  .separator{
+    -fx-orientation: vertical;
+    -fx-padding: 2px 4px 2px 4px;
+}
+
+#lblReceivePayment{
+    -fx-graphic: url("/resources/images/payment_24.png");
+}
+
+#lblSearchPayment{
+    -fx-graphic: url("/resources/images/search_payment_24.png");
+}
+
+#lblCustomers{
+    -fx-graphic: url("/resources/images/customer_24.png");
+}
+
+#lblCustomerAccount{
+    -fx-graphic: url("/resources/images/customer_account_24.png");
+}
+
+#lblItems{
+    -fx-graphic: url("/resources/images/item.png");
+}
+
+#lblMeasurementUnits{
+    -fx-graphic: url("/resources/images/measurement_unit.png");
+}
+
+#lblUserSettings{
+    -fx-graphic: url("/resources/images/configuration_24.png");
+}
+
+#lblBackup{
+    -fx-graphic: url("/resources/images/backup_24.png");
+}
+
+
+
+
+
+
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.URL?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1"
+            fx:controller="intCount.controller.HardwareViewerController"
+            styleClass="rootNode">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/hardware.css"/>
+    </stylesheets>
+
+    <center>
+
+
+        <HBox alignment="TOP_CENTER" styleClass="parent">
+            <VBox styleClass="parent" spacing="20.0" fx:id="topContainer">
+                <padding>
+                    <Insets left="50.0" right="50.0" top="20.0" bottom="30.0"/>
+                </padding>
+
+
+                <HBox alignment="TOP_CENTER">
+                    <Label text="HardWareViewer" fx:id="heading"/>
+                    <VBox.margin>
+                        <Insets top="5.0" right="0" bottom="0.0" left="0"/>
+                    </VBox.margin>
+                </HBox>
+
+                <StackPane alignment="CENTER">
+                    <GridPane hgap="15.0" vgap="12.0" fx:id="gridPane" styleClass="parent">
+                        <Label fx:id="lblHostname" text="Hardware ID (hostname):" GridPane.columnIndex="0"
+                               GridPane.rowIndex="1" styleClass="nodeLabel"/>
+                        <TextField fx:id="tfHostname" GridPane.columnIndex="1"
+                                   GridPane.rowIndex="1" editable="false" focusTraversable="false"
+                                   styleClass="readOnlyField" prefColumnCount="15"
+                                   GridPane.fillWidth="false" GridPane.hgrow="NEVER"/>
+                    </GridPane>
+                </StackPane>
+
+            </VBox>
+        </HBox>
+
+
+    </center>
+
+</BorderPane>
+

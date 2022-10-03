@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.URL?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.Region?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="intCount.controller.UnitsOfMeasurementController"
+      styleClass="rootNode" alignment="TOP_CENTER">
+    <stylesheets>
+        <URL value="@/resources/stylesheets/unitsofmeasurement.css"/>
+    </stylesheets>
+    <padding>
+        <Insets left="35.0" right="35.0" top="30.0" bottom="10.0"/>
+    </padding>
+    <fx:define>
+        <ToggleGroup fx:id="newOrEditToggle"/>
+        <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+        <Region fx:constant="USE_COMPUTED_SIZE" fx:id="computedSize"/>
+    </fx:define>
+    <BorderPane fx:id="borderPane" styleClass="parent">
+        <top>
+            <VBox fillWidth="true" spacing="20.0" styleClass="parent">
+                <BorderPane.margin>
+                    <Insets bottom="10.0"/>
+                </BorderPane.margin>
+                <Label text="Units of measurement" underline="true" alignment="CENTER"
+                       textAlignment="CENTER" maxWidth="$maxDouble" fx:id="heading"/>
+                <GridPane hgap="15" vgap="2" styleClass="parent">
+                    <Label text="_Unit of measure:" GridPane.columnIndex="0"
+                           GridPane.rowIndex="0" styleClass="nodeLabel"
+                           mnemonicParsing="true" labelFor="${tfMeasurementUnit}"/>
+                    <Label GridPane.columnIndex="1" GridPane.rowIndex="0"
+                           text="_Abbreviation:" styleClass="nodeLabel"
+                           mnemonicParsing="true" labelFor="${tfAbbreviation}"/>
+                    <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                          fillWidth="true" GridPane.valignment="TOP" styleClass="parent">
+                        <TextField fx:id="tfMeasurementUnit" prefColumnCount="15" promptText="Input required"/>
+                        <Label fx:id="lblUnitError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <VBox spacing="2" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                          GridPane.valignment="TOP" styleClass="parent">
+                        <TextField fx:id="tfAbbreviation" prefColumnCount="15" promptText="Optional Input"/>
+                        <Label fx:id="lblAbbreviationError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <Button GridPane.columnIndex="2" GridPane.rowIndex="1"
+                            text="_Ajouter" mnemonicParsing="true" fx:id="btnAdd"
+                            minWidth="50.0" disable="true" GridPane.valignment="TOP"/>
+
+                    <HBox GridPane.columnIndex="3" GridPane.rowIndex="1" spacing="7"
+                          GridPane.valignment="TOP" styleClass="parent"
+                          fx:id="radioContainer" GridPane.fillHeight="false">
+                        <RadioButton fx:id="rdoNew" text="_New" toggleGroup="$newOrEditToggle"
+                                     selected="true" mnemonicParsing="true" userData="new"/>
+                        <RadioButton fx:id="rdoEdit" text="_Edit" toggleGroup="$newOrEditToggle"
+                                     mnemonicParsing="true" userData="edit"/>
+                    </HBox>
+                </GridPane>
+            </VBox>
+        </top>
+        <center>
+            <BorderPane fx:id="content" styleClass="parent"
+                        BorderPane.alignment="TOP_LEFT" maxWidth="$computedSize">
+                <center>
+                    <StackPane alignment="CENTER">
+                        <TableView fx:id="tableView">
+                            <columns>
+                                <TableColumn fx:id="measurementColumn" prefWidth="170"
+                                             text="Unit name">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="unitName"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn fx:id="abbreviationColumn" text="Abbreviation"
+                                             prefWidth="120">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="abbreviation"/>
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                            <placeholder>
+                                <Label text="&lt; No measurement unit defined &gt;"
+                                       fx:id="placeholderText"/>
+                            </placeholder>
+                            <columnResizePolicy>
+                                <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                            </columnResizePolicy>
+                        </TableView>
+                        <ImageView fx:id="checkImage" opacity="0">
+                            <image>
+                                <Image url="/resources/images/check.png"/>
+                            </image>
+                        </ImageView>
+                    </StackPane>
+                </center>
+                <right>
+                    <VBox styleClass="parent">
+                        <Button fx:id="btnDelete" text="_Delete" onAction="#onDeleteUnitAction"/>
+                        <BorderPane.margin>
+                            <Insets left="10.0"/>
+                        </BorderPane.margin>
+                    </VBox>
+                </right>
+                <bottom>
+                    <TilePane prefColumns="2" alignment="BOTTOM_RIGHT" hgap="25.0" styleClass="parent">
+                        <BorderPane.margin>
+                            <Insets top="25.0"/>
+                        </BorderPane.margin>
+                        <children>
+                            <Button fx:id="btnSave" text="_Save" mnemonicParsing="true"
+                                    TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble"
+                                    onAction="#onSaveAction"/>
+                            <Button fx:id="btnClose" text="_Close" mnemonicParsing="true"
+                                    maxWidth="$maxDouble" TilePane.alignment="BOTTOM_RIGHT"
+                                    onAction="#onCloseAction" cancelButton="true"/>
+                        </children>
+                    </TilePane>
+                </bottom>
+            </BorderPane>
+        </center>
+    </BorderPane>
+</HBox>
+

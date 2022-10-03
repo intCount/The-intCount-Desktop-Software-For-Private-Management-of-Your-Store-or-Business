@@ -1,0 +1,223 @@
+*{
+    -fx-font-size: 1.1em;
+}
+
+.root{
+    -lookupBackground: #FFE4A8; /* rgb(253,251, 248 ) */
+    -lookupBorder:  #FFE4A8;
+}
+
+.parent{
+    -fx-background-color: transparent;
+}
+
+.rootNode{
+    -fx-background-color: -lookupBackground;
+}
+
+.tooltip{
+   -fx-background-color: yellow; 
+   -fx-text-fill: black;
+   -fx-font-size: 1em; 
+   -fx-font-family: monospace;
+   -fx-font-weight: bold;
+   -fx-wrap-text: true;
+}
+
+#heading{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold; 
+    -fx-font-family: Arial;
+    -fx-text-fill: maroon;
+    -fx-fill: maroon;
+    -fx-alignment: CENTER;
+    -fx-underline: true;
+}
+
+.errorLabel{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+    -fx-text-wrap: true;
+}
+
+.nodeLabel{
+   -fx-text-fill: derive(black, -20%);
+   -fx-font-weight: 900;
+   -fx-wrap-text: true;
+}
+
+.readOnlyField{
+     -fx-background-color: antiquewhite;
+}
+
+.tooltip{
+   -fx-background-color: yellow; 
+   -fx-text-fill: black;
+   -fx-font-size: 1em; 
+   -fx-font-family: monospace;
+   -fx-font-weight: bold;
+   -fx-wrap-text: true;
+}
+
+.requiredInput{
+    -fx-text-fill: darkorange;
+    -fx-font-weight: bold;
+}
+
+.highlight{
+    -fx-text-fill: darkred;
+    -fx-font-weight: bolder;
+    -fx-underline: true;
+    -fx-font-size: 1.12em;
+}
+
+.semiHighlight{
+    -fx-text-fill: derive(darkred, 15%);
+    -fx-font-weight: bold;
+}
+
+.note{
+    -fx-text-fill: sienna;
+    -fx-underline: true;
+}
+
+#placeholderText{
+    -fx-font-weight: bold;
+    -fx-padding: 4px 6px 4px 6px;
+    -fx-text-fill: saddlebrown;
+    -fx-font-size: 1.2em;
+}
+
+.button{
+    /*-fx-background-color: rgb(216, 176, 118);*/
+    -fx-background-color: darksalmon;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(208,140,140);
+    -fx-border-radius: 6px;
+    -fx-cursor: hand;
+}
+
+.button:hover{
+    /*-fx-background-color: rgb(225, 147, 108);*/
+    -fx-background-color: rgb(231, 140, 109);
+    -fx-border-color: rgb(189, 91, 91);
+}
+
+.button:pressed{
+    -fx-background-color: rgb(230, 91, 57);
+    -fx-border-color: rgb(150, 61, 61);
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
+
+.button:focused{
+     -fx-background-color: rgb(227, 119, 87);
+     -fx-border-color: mediumorchid;
+     -fx-effect: dropshadow(two-pass-box, darkgray, 10, 0.0 , 0, 1);
+}
+
+.table-row-cell:odd{
+   -fx-background-color: derive(bisque, 35%);
+}
+
+.table-row-cell:selected,
+.table-row-cell:selected:hover{
+    -fx-background-color: derive(saddlebrown, 10%);
+}
+
+.table-row-cell:selected .table-cell,
+.table-row-cell:selected:hover .table-cell{
+    -fx-text-fill: white;
+}
+
+.table-row-cell:hover{
+     -fx-background-color: bisque;
+}
+
+.table-row-cell:hover .table-cell{
+    -fx-text-fill: brown;
+}
+
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: derive(bisque, 20%);
+}
+
+.table-view .column-header{
+    -fx-background-color: #000000;
+}
+
+.table-view .column-header .label{
+    -fx-background-color: bisque;
+    -fx-text-fill: maroon;
+}
+
+.list-view .list-cell:odd{
+    -fx-background-color: derive(bisque, 35%);
+}
+
+.list-view .list-cell:selected,
+.list-view .list-cell:selected:hover{
+    -fx-background-color: derive(saddlebrown, 10%);
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell:hover{
+    -fx-background-color: bisque;
+    -fx-text-fill: brown;
+}
+
+.combo-box{
+    -fx-base: white;
+    -fx-background: white;
+}
+
+.titled-pane > .title {
+-fx-background-color: moccasin;
+-fx-font-weight: bolder;
+-fx-font-size: 1.12em;
+}
+
+.titled-pane .content{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport{
+    -fx-background-color: transparent;
+}
+
+.graphicButton{
+    -fx-background-color: cornsilk;
+    -fx-background-radius: 6px;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(208,140,140);
+    -fx-border-radius: 6px;
+}
+
+.graphicButton:hover{
+    -fx-background-color: antiquewhite;
+    -fx-border-color: rgb(189, 91, 91);
+}
+
+.graphicButton:pressed{
+    -fx-background-color: bisque;
+    -fx-border-color: rgb(150, 61, 61);
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
+
+.graphicButton:focused{
+     -fx-background-color: blanchedalmond;
+     -fx-border-color: mediumorchid;
+     -fx-effect: dropshadow(two-pass-box, darkgray, 10, 0.0 , 0, 1);
+}
+
+.check-list-view .check-box{
+    -fx-focus-traversible : false;
+}
+
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="intCount.controller.AppDataLocationController"
+      styleClass="rootNode" alignment="TOP_CENTER" fillHeight="false">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/appdatalocation.css"/>
+    </stylesheets>
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+
+    <GridPane hgap="15.0" vgap="25.0" styleClass="parent" fx:id="gridPane">
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="NEVER"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Text text="Application data location" fx:id="heading" GridPane.columnSpan="2"
+              GridPane.halignment="CENTER" underline="true"/>
+        <Label GridPane.rowIndex="1" text="_Data Folder:" labelFor="${tfFolderPath}"
+               styleClass="nodeLabel" mnemonicParsing="true" GridPane.valignment="TOP"/>
+        <HBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="10.0" styleClass="parent">
+            <VBox spacing="15.0" styleClass="parent">
+                <TextField fx:id="tfFolderPath" editable="false" HBox.hgrow="ALWAYS"
+                           styleClass="readOnlyField" prefColumnCount="40">
+                    <tooltip>
+                        <Tooltip text="Nice set"/>
+                    </tooltip>
+                </TextField>
+                <CheckBox fx:id="chkMoveDatabases" visible="false" styleClass="nodeLabel"
+                          selected="true" text="Move databases from current location to new location"/>
+            </VBox>
+
+            <Button fx:id="btnBrowseForFolder" text="_Browse..." mnemonicParsing="true"
+                    onAction="#onBrowseForFolderAction">
+                <tooltip>
+                    <Tooltip text="Click here to find the application data folder"/>
+                </tooltip>
+            </Button>
+        </HBox>
+
+        <TilePane GridPane.rowIndex="2" GridPane.columnSpan="2" alignment="CENTER_RIGHT"
+                  hgap="25.0" prefColumns="2" styleClass="parent">
+            <GridPane.margin>
+                <Insets top="15.0" right="0" left="0" bottom="0"/>
+            </GridPane.margin>
+            <Button fx:id="btnSave" text="_Save" maxWidth="$MAX_DOUBLE"
+                    onAction="#onSaveLocationAction" mnemonicParsing="true"/>
+            <Button fx:id="btnClose" text="_Close" onAction="#onCloseTabAction"
+                    mnemonicParsing="true" cancelButton="true"/>
+        </TilePane>
+
+    </GridPane>
+
+</HBox>
+

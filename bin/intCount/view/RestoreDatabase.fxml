@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+      fx:controller="intCount.controller.RestoreDatabaseController"
+      alignment="TOP_CENTER" fillHeight="false">
+    <stylesheets>
+        <URL value="@/resources/stylesheets/restoredatabase.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+
+
+    <BorderPane fx:id="topPane" styleClass="parent">
+        <top>
+            <VBox spacing="25.0" styleClass="parent">
+                <HBox alignment="CENTER" styleClass="parent">
+                    <Text fx:id="heading" text="Database restore"/>
+                </HBox>
+
+                <HBox spacing="10.0" styleClass="parent">
+                    <Label text="Restore database from: " styleClass="nodeLabel"/>
+                    <TextField fx:id="tfDatabaseLocation" prefColumnCount="40"
+                               styleClass="readOnlyField" focusTraversable="false" editable="false"
+                               promptText="Path to the folder containing the backed up copy of the database">
+                        <tooltip>
+                            <Tooltip text="Path to restore database from"/>
+                        </tooltip>
+                    </TextField>
+                    <Button fx:id="btnBrowseForFolder" text="Browse..."
+                            onAction="#onBrowseForFolderAction">
+                        <tooltip>
+                            <Tooltip
+                                    text="Click this button to select a folder containing the saved copy of the database.."/>
+                        </tooltip>
+                    </Button>
+                </HBox>
+            </VBox>
+        </top>
+        <center>
+            <VBox fillWidth="false" styleClass="parent" fx:id="centerPane">
+                <BorderPane.margin>
+                    <Insets top="25.0" bottom="15.0" left="0" right="0"/>
+                </BorderPane.margin>
+                <VBox spacing="3.0">
+                    <Label text="Database to restore:" styleClass="nodeLabel"/>
+                    <ListView fx:id="lvwYearsDiscovered" prefWidth="300" prefHeight="300">
+                        <placeholder>
+                            <Label fx:id="placeholderText"
+                                   text="&lt; No fiscal year found &gt;"/>
+                        </placeholder>
+                    </ListView>
+                </VBox>
+                <Label fx:id="lblNoYearSelected" styleClass="errorLabel"/>
+            </VBox>
+        </center>
+
+        <bottom>
+            <TilePane prefColumns="2" hgap="25" alignment="BOTTOM_RIGHT">
+                <BorderPane.margin>
+                    <Insets top="25.0" left="0" right="0" bottom="0"/>
+                </BorderPane.margin>
+                <Button fx:id="btnRestore" text="Restore" onAction="#onRestoreDatabaseAction"/>
+                <Button fx:id="btnClose" text="Close" maxWidth="$MAX_DOUBLE" cancelButton="true"
+                        onAction="#onCloseTabAction"/>
+            </TilePane>
+        </bottom>
+
+    </BorderPane>
+</HBox>

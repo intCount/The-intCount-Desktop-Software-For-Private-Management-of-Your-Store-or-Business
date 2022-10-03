@@ -1,0 +1,15 @@
+@import "common.css";
+
+.rootNode{
+    -fx-padding: 35px 25px 25px 25px;
+}
+
+#topPane{
+    -fx-padding: 20px 50px 15px 50px;
+    -fx-border-width: 1px;
+    -fx-border-color: -lookupBorder;
+}
+
+#heading{
+    -fx-alignment: TOP_CENTER;
+}

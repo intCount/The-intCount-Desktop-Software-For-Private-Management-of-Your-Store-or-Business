@@ -1,0 +1,31 @@
+@import "common.css";
+
+#radioContainer{
+    -fx-border-width: 1px;
+    -fx-border-color: -lookupBorder;
+    -fx-padding: 5px;
+}
+
+.uom-cell{
+   -fx-padding: 4px 3px 4px 20px;
+}
+
+.abbreviation-cell{
+    -fx-padding: 4px 0 4px 0; 
+    -fx-alignment: center;
+    -fx-font-weight: 700;
+}
+
+#content{
+    -fx-padding: 15px 0 0 0;
+}
+
+#borderPane{
+    -fx-padding: 15px 40px 15px 40px;
+    -fx-border-width: 1px;
+    -fx-border-color: -lookupBorder;
+}
+
+
+
+

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+            fx:controller="intCount.controller.CustomerEditController">
+    <stylesheets>
+        <URL value="@/resources/stylesheets/CustomerEdit.css"/>
+    </stylesheets>
+    <padding>
+        <Insets left="20.0" right="20.0" top="15.0" bottom="10.0"/>
+    </padding>
+    <fx:define>
+        <ToggleGroup fx:id="balanceTypeToggle"/>
+        <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+    </fx:define>
+    <bottom>
+        <TilePane prefColumns="2" alignment="BOTTOM_RIGHT" hgap="25.0"
+                  styleClass="parent">
+            <BorderPane.margin>
+                <Insets top="25.0"/>
+            </BorderPane.margin>
+            <children>
+                <Button fx:id="btnOK" text="_OK" mnemonicParsing="true"
+                        TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble" onAction="#onOkAction"/>
+                <Button fx:id="btnCancel" text="_Canceal" mnemonicParsing="true"
+                        TilePane.alignment="BOTTOM_RIGHT" cancelButton="true" onAction="#onCancelAction"/>
+            </children>
+        </TilePane>
+    </bottom>
+
+    <center>
+        <GridPane BorderPane.alignment="CENTER" hgap="15.0" vgap="15.0"
+                  styleClass="parent">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+            </rowConstraints>
+
+            <Label text="Required inputs are labeled with orange color."
+                   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"
+                   GridPane.halignment="CENTER" underline="true" styleClass="note"/>
+
+            <Label labelFor="$tfName" text="_Name:" mnemonicParsing="true"
+                   GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="requiredInput"
+                   GridPane.valignment="TOP" GridPane.halignment="RIGHT"/>
+            <VBox spacing="3" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                  fillWidth="true">
+                <TextField fx:id="tfName"/>
+                <Label fx:id="customerNameError" styleClass="errorLabel"
+                       visible="false" managed="false"/>
+            </VBox>
+
+            <Label labelFor="$tfCity" text="_Address:" mnemonicParsing="true"
+                   GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.valignment="TOP"
+                   GridPane.halignment="RIGHT" styleClass="nodeLabel"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" spacing="3"
+                  fillWidth="true">
+                <TextField fx:id="tfCity"/>
+                <Label fx:id="cityError" styleClass="errorLabel" visible="false"
+                       managed="false"/>
+            </VBox>
+
+            <Label labelFor="$tfPhoneNumbers" text="_Phone number:"
+                   mnemonicParsing="true" GridPane.columnIndex="0" GridPane.rowIndex="3"
+                   GridPane.valignment="TOP" GridPane.halignment="RIGHT" styleClass="nodeLabel"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="3" spacing="4"
+                  fillWidth="true">
+                <TextField fx:id="tfPhoneNumbers" promptText=""/>
+                <Label fx:id="phoneNumbersError" styleClass="errorLabel"
+                       visible="false" managed="false"/>
+            </VBox>
+
+            <Label labelFor="$tfTaxePro" text="_Professional tax:"
+                   mnemonicParsing="true" GridPane.columnIndex="0" GridPane.rowIndex="4"
+                   GridPane.valignment="TOP" GridPane.halignment="RIGHT" styleClass="requiredInput"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="4" spacing="3"
+                  fillWidth="true">
+                <TextField fx:id="tfTaxePro" promptText=""/>
+                <Label fx:id="taxeProError" styleClass="errorLabel" visible="false"
+                       managed="false"/>
+            </VBox>
+
+            <Label labelFor="$tfIce" text="_Ice:" mnemonicParsing="true"
+                   GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="TOP"
+                   GridPane.halignment="RIGHT" styleClass="requiredInput"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="5" spacing="3"
+                  fillWidth="true">
+                <TextField fx:id="tfIce" promptText=""/>
+                <Label fx:id="iceError" styleClass="errorLabel" visible="false"
+                       managed="false"/>
+            </VBox>
+
+            <Label labelFor="$tfOpeningBalance"
+                   text="_Opening balance (in DH):"
+                   mnemonicParsing="true" styleClass="nodeLabel" GridPane.columnIndex="0"
+                   GridPane.rowIndex="6" GridPane.valignment="TOP" GridPane.halignment="RIGHT"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="6" spacing="3"
+                  fillWidth="true">
+                <TextField fx:id="tfOpeningBalance" text="0.00"/>
+                <Label fx:id="openingBalanceError" styleClass="errorLabel"
+                       visible="false" managed="false"/>
+            </VBox>
+
+            <Label labelFor="$tfBalanceType" text="_Type of balance:"
+                   mnemonicParsing="true" GridPane.columnIndex="0" GridPane.rowIndex="7"
+                   GridPane.valignment="TOP" GridPane.halignment="RIGHT" styleClass="nodeLabel"/>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="7" spacing="3"
+                  fillWidth="true">
+                <HBox spacing="15">
+                    <RadioButton fx:id="rdCredit" text="_Credit"
+                                 mnemonicParsing="true" toggleGroup="$balanceTypeToggle"/>
+                    <RadioButton fx:id="rdDebit" text="_Debit"
+                                 mnemonicParsing="true" toggleGroup="$balanceTypeToggle"/>
+                </HBox>
+                <Label fx:id="balanceTypeError" styleClass="errorLabel"
+                       visible="false" managed="false"/>
+            </VBox>
+
+        </GridPane>
+    </center>
+</BorderPane>

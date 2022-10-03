@@ -1,0 +1,16 @@
+@import "common.css";
+
+.rootNode{
+    -fx-padding: 30px;
+}
+
+#gridPane{
+    -fx-padding: 20px 40px 20px 40px;
+    -fx-border-width: 1px;
+   -fx-border-style: solid;
+   -fx-border-color: -lookupBorder;
+}
+
+
+
+

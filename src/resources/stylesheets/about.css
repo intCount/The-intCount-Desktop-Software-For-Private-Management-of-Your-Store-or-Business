@@ -1,0 +1,48 @@
+.rootNode{
+    -fx-padding: 35px 50px 35px 50px;
+}
+
+#contentHolder{
+    -fx-padding: 20px 40px 5px 40px;
+    -fx-border-width: 1px;
+    -fx-border-color: -lookupBorder;
+    -fx-background-color: snow;
+   -fx-effect: dropshadow(three-pass-box, darkgray, 10, 0.0 , 0, 1);
+}
+
+.left{
+    -fx-text-fill: rgb(40, 30, 23);
+    -fx-font-weight: bold;
+}
+
+.right{
+    -fx-text-fill: rgb(50, 21, 14);
+    -fx-font-weight: bold;
+}
+
+#txtTitle{
+    -fx-font-size: 2.5em;
+    -fx-fill: linear-gradient(to right, darkorange, orange);
+    -fx-font-weight: bold;
+}
+
+#txtVersion{
+    -fx-font-size: 1.3em;
+    -fx-font-weight: bold;
+    -fx-fill: #660033;
+}
+
+.hyperlink{
+    -fx-font-weight: bold;
+    -fx-text-fill: navy;
+}
+
+.hyperlink:visited{
+    -fx-text-fill: blueviolet;
+    -fx-underline: false;
+    -fx-border-width: 0;
+}
+
+.hyperlink:visited:hover{
+    -fx-underline: true;
+}

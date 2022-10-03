@@ -1,0 +1,74 @@
+@import "common.css";
+
+.rootNode{
+    -fx-padding: 15px 50px 20px 50px;
+}
+
+#scrollPane{
+    -fx-border-width:1px;
+    -fx-border-color: -lookupBorder;
+    -fx-border-insets: 10px -15px -10px -15px;
+    -fx-padding: 15px 10px 10px 0;
+}
+
+#invoiceSearchCriteriaPanel{
+    -fx-margin: 10px 0 10px 0;
+    
+}
+
+#criteriaContainer{
+    -fx-padding: 10px 15px 10px 15px;
+}
+
+.criteriaHeading{
+   -fx-font-weight: bold;
+   -fx-text-fill: maroon;
+}
+
+.criteriaSubHeading{
+     -fx-font-weight: bold;
+     -fx-text-fill: derive(maroon, 5%);
+}
+
+#invoiceNumberPanel,
+#otherCriteriaPanel,
+#invoiceDatePanel,
+#invoiceTypePanel,
+#customersPanel,
+#invoiceAmountPanel{
+    -fx-padding: 0 0 0 20px;
+   
+}
+
+#criteriaSelectionError{
+   -fx-padding: 0 0 0 10px;
+}
+
+#invoiceSearchResultPanel{
+    -fx-margin: 10px 0 0 0;
+}
+
+#rightButtonsBar{
+   -fx-padding: 0 0 0 10px;
+}
+
+#invoiceTotalLabel{
+   -fx-padding: 10px 0 0 0;
+}
+
+.amount-cell{
+    -fx-padding:4px 10px 4px 0;
+    -fx-text-alignment: right;
+    -fx-alignment:CENTER_RIGHT;
+}
+
+.name-cell{
+    -fx-padding: 4px 0 4px 10px;
+}
+
+#tfSearchCustomer{
+    -fx-background-image: url(/resources/images/search_16.png);
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 97%, 4;
+    -fx-padding: 3px 27px 3px 7px;
+}

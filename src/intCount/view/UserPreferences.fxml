@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      styleClass="rootNode" alignment="TOP_CENTER" fillHeight="false"
+      fx:controller="intCount.controller.UserPreferencesController">
+    <stylesheets>
+        <URL value="@/resources/stylesheets/userpreferences.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <Double fx:id="MAX_DOUBLE" fx:constant="MAX_VALUE"/>
+        <ToggleGroup fx:id="toggleGroup"/>
+    </fx:define>
+
+    <VBox spacing="20.0" fx:id="contentHolder">
+
+        <HBox styleClass="parent" alignment="CENTER">
+            <Text fx:id="heading" text="User preferences"/>
+            <VBox.margin>
+                <Insets top="0" right="0" bottom="10.0" left="0.0"/>
+            </VBox.margin>
+        </HBox>
+
+
+        <CheckBox fx:id="chkPrintOnSave" styleClass="nodeLabel"
+                  text="Print on Records selected by default in the Invoice tab"/>
+
+        <VBox spacing="14.0" styleClass="parent">
+            <Label styleClass="nodeLabel" text="When printing an invoice:"/>
+            <VBox spacing="10.0" styleClass="parent,nestedContainer">
+                <RadioButton fx:id="rdPrintPreview" text="Show print preview"
+                             styleClass="nodeLabel" toggleGroup="$toggleGroup"/>
+                <RadioButton fx:id="rdPrintDirectly" text="Print directly"
+                             toggleGroup="$toggleGroup" styleClass="nodeLabel"/>
+                <CheckBox fx:id="chkPrintDialogFirst" text="Show 'Print' dialog first"
+                          styleClass="nodeLabel">
+                    <VBox.margin>
+                        <Insets top="4.0" left="20.0" right="0" bottom="0"/>
+                    </VBox.margin>
+                </CheckBox>
+            </VBox>
+        </VBox>
+
+        <Separator/>
+
+        <CheckBox fx:id="chkAutoLoadLastActiveYear" styleClass="nodeLabel"
+                  text="Automatically open the fiscal year at the last application shutdown"/>
+
+        <Separator>
+            <VBox.margin>
+                <Insets top="10.0" right="0" bottom="0" left="0"/>
+            </VBox.margin>
+        </Separator>
+
+        <TilePane styleClass="parent" hgap="25.0" prefColumns="2"
+                  alignment="TOP_RIGHT">
+            <Button fx:id="btnSave" text="_Save" mnemonicParsing="true"
+                    maxWidth="$MAX_DOUBLE" onAction="#onSavePreferencesAction"/>
+            <Button fx:id="btnClose" text="_Close" mnemonicParsing="true"
+                    cancelButton="true" onAction="#onCloseTabAction"/>
+        </TilePane>
+    </VBox>
+</HBox> 
+
+

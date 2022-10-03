@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.collections.FXCollections ?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" styleClass="rootNode"
+      fx:controller="intCount.controller.ItemsController" alignment="TOP_CENTER">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/items.css"/>
+    </stylesheets>
+
+    <padding>
+        <Insets left="50.0" right="20.0" top="15.0" bottom="10.0"/>
+    </padding>
+
+    <fx:define>
+        <ToggleGroup fx:id="newOrEditToggle"/>
+        <Double fx:constant="MAX_VALUE" fx:id="maxDouble"/>
+    </fx:define>
+
+    <BorderPane fx:id="content">
+        <top>
+            <VBox fillWidth="true" spacing="20.0" styleClass="parent">
+                <BorderPane.margin>
+                    <Insets bottom="10.0"/>
+                </BorderPane.margin>
+                <Label text="Item" underline="true" alignment="CENTER"
+                       textAlignment="CENTER" maxWidth="$maxDouble" fx:id="heading"/>
+
+                <GridPane hgap="15" vgap="2" styleClass="parent">
+
+                    <Label text="Items: Please do not use this symbol '" GridPane.columnIndex="0"
+                           GridPane.rowIndex="0" styleClass="nodeLabel"/>
+
+                    <VBox spacing="2" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                          fillWidth="true" GridPane.valignment="TOP" styleClass="parent">
+                        <TextField fx:id="tfName" prefColumnCount="20" promptText=""/>
+                        <Label fx:id="lblItemError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <Label text="Selling price:" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                           styleClass="nodeLabel"/>
+                    <VBox spacing="2" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                          fillWidth="true" GridPane.valignment="TOP" styleClass="parent">
+                        <TextField fx:id="tfHt" prefColumnCount="05"/>
+                        <Label fx:id="lblItemError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <Label text="VAT:" GridPane.columnIndex="2"
+                           GridPane.rowIndex="0" styleClass="nodeLabel"/>
+                    <VBox spacing="2" GridPane.columnIndex="2" GridPane.rowIndex="1"
+                          fillWidth="true" GridPane.valignment="TOP" styleClass="parent">
+                        <ComboBox fx:id="cbTva" editable="true" promptText="0.##">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="0.00"/>
+                                    <String fx:value="0.20"/>
+                                    <String fx:value="0.14"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
+                        <Label fx:id="lblItemError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <Label text="Current Stock:" GridPane.columnIndex="3"
+                           GridPane.rowIndex="0" styleClass="nodeLabel"/>
+                    <VBox spacing="2" GridPane.columnIndex="3" GridPane.rowIndex="1"
+                          fillWidth="true" GridPane.valignment="TOP" styleClass="parent">
+                        <TextField fx:id="tfStockActuel" prefColumnCount="05"/>
+                        <Label fx:id="lblItemError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <Label text="Last entry:" GridPane.columnIndex="4"
+                           GridPane.rowIndex="0" styleClass="nodeLabel"/>
+                    <VBox spacing="2" GridPane.columnIndex="4" GridPane.rowIndex="1"
+                          fillWidth="true" GridPane.valignment="TOP" styleClass="parent">
+                        <TextField fx:id="tfDateEntree" prefColumnCount="05"
+                                   promptText="d.M.yyyy"/>
+                        <Label fx:id="lblItemError" managed="false" styleClass="errorLabel"/>
+                    </VBox>
+                    <Button GridPane.columnIndex="5" GridPane.rowIndex="1"
+                            text="_Add" mnemonicParsing="true" fx:id="btnAdd" minWidth="50.0"
+                            disable="true" GridPane.valignment="TOP"/>
+
+                    <HBox GridPane.columnIndex="6" GridPane.rowIndex="1" spacing="7"
+                          GridPane.valignment="TOP" GridPane.fillHeight="false" fx:id="radioContainer"
+                          styleClass="parent">
+
+                        <RadioButton fx:id="rdoNew" text="_New"
+                                     toggleGroup="$newOrEditToggle" selected="true" mnemonicParsing="true"
+                                     userData="new"/>
+                        <RadioButton fx:id="rdoEdit" text="_Edit"
+                                     toggleGroup="$newOrEditToggle" mnemonicParsing="true" userData="edit"/>
+                    </HBox>
+
+                </GridPane>
+            </VBox>
+        </top>
+        <center>
+            <BorderPane styleClass="parent" BorderPane.alignment="TOP_LEFT">
+
+                <center>
+                    <VBox spacing="5.0">
+                        <StackPane alignment="CENTER" VBox.vgrow="ALWAYS">
+                            <TableView fx:id="tableView" minWidth="150" minHeight="150"
+                                       maxHeight="$maxDouble" VBox.vgrow="ALWAYS">
+                                <placeholder>
+                                    <Label text="&lt; No item defined &gt;" fx:id="placeholderText"/>
+                                </placeholder>
+                                <columns>
+                                    <TableColumn fx:id="ArticlesColumn" prefWidth="170"
+                                                 text="Existing items">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="unitName"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="HTColumn" text="Selling price" prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="TVAColumn" text="VAT"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="StockActuelColumn" text="Current Stock "
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="DateEntreeColumn" text="Last entry"
+                                                 prefWidth="120">
+                                        <cellValueFactory>
+                                            <PropertyValueFactory property="abbreviation"/>
+                                        </cellValueFactory>
+                                    </TableColumn>
+                                </columns>
+                                <placeholder>
+                                    <Label text="&lt; No item is defined &gt;" fx:id="placeholderText"/>
+                                </placeholder>
+                                <columnResizePolicy>
+                                    <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                </columnResizePolicy>
+                            </TableView>
+                            <ImageView fx:id="checkImage" opacity="0">
+                                <image>
+                                    <Image url="/resources/images/check.png"/>
+                                </image>
+                            </ImageView>
+                        </StackPane>
+                    </VBox>
+
+                </center>
+                <right>
+                    <VBox styleClass="parent">
+                        <Button fx:id="btnDelete" text="_Delete" onAction="#onDeleteItemAction"/>
+                        <BorderPane.margin>
+                            <Insets left="10.0"/>
+                        </BorderPane.margin>
+                    </VBox>
+                </right>
+            </BorderPane>
+        </center>
+        <bottom>
+            <TilePane prefColumns="2" alignment="BOTTOM_RIGHT" hgap="20.0"
+                      styleClass="parent">
+                <BorderPane.margin>
+                    <Insets top="25.0"/>
+                </BorderPane.margin>
+
+                <children>
+                    <Button fx:id="btnImport" text="_Import" mnemonicParsing="true"
+                            TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble" onAction="#onImportAction"/>
+                    <Button fx:id="btnSave" text="_Save" mnemonicParsing="true"
+                            TilePane.alignment="BOTTOM_RIGHT" maxWidth="$maxDouble" onAction="#onSaveAction"/>
+                    <Button fx:id="btnClose" text="_Close" mnemonicParsing="true"
+                            maxWidth="$maxDouble" TilePane.alignment="BOTTOM_RIGHT"
+                            cancelButton="true" onAction="#onCloseAction"/>
+                </children>
+            </TilePane>
+        </bottom>
+    </BorderPane>
+</HBox>
+

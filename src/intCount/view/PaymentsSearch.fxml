@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="intCount.controller.PaymentsSearchController"
+            styleClass="rootNode">
+
+    <stylesheets>
+        <URL value="@/resources/stylesheets/paymentsSearch.css"/>
+    </stylesheets>
+
+    <fx:define>
+        <Double fx:constant="MAX_VALUE" fx:id="MAX_DOUBLE"/>
+    </fx:define>
+
+    <top>
+        <HBox alignment="TOP_CENTER" styleClass="parent">
+            <Text fx:id="heading" text="Search for payments"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane styleClass="parent" fx:id="scrollPane" BorderPane.alignment="TOP_CENTER">
+            <HBox alignment="TOP_CENTER" minWidth="${scrollPane.viewportBounds.width}" styleClass="parent">
+                <VBox spacing="15" styleClass="parent" alignment="TOP_CENTER">
+                    <TitledPane fx:id="searchCriteriaPane" styleClass="parent">
+                        <text>
+                            Payment Search Criteria
+                        </text>
+                        <content>
+                            <VBox fx:id="criteriaContainer" spacing="10.0" styleClass="parent" minWidth="400"
+                                  fillWidth="true">
+                                <VBox spacing="10.0" styleClass="parent" fillWidth="true">
+                                    <CheckBox fx:id="chkBetweenDates" text="Between dates" styleClass="subHeading"/>
+                                    <VBox spacing="3.0" styleClass="parent" fx:id="betweenDatesPane" fillWidth="true">
+                                        <HBox fx:id="paymentDatePane" spacing="10.0" styleClass="parent">
+                                            <Label text="Between" alignment="CENTER_LEFT" styleClass="nodeLabel"/>
+                                            <DatePicker fx:id="dpStartDate" promptText="e.g. 12.05.2016"/>
+                                            <Label text="And" alignment="CENTER_LEFT" styleClass="nodeLabel"/>
+                                            <DatePicker fx:id="dpEndDate" promptText="e.g. 28.06.2016"/>
+                                        </HBox>
+                                        <Label fx:id="lblPaymentDateError" styleClass="errorLabel"/>
+                                    </VBox>
+
+                                </VBox>
+                                <VBox spacing="10.0" styleClass="parent">
+                                    <CheckBox fx:id="chkPaymentMode" text="Payment method" styleClass="subHeading"/>
+                                    <VBox spacing="4.0" fx:id="paymentModeContainer" styleClass="parent">
+                                        <HBox spacing="12.0" styleClass="parent">
+                                            <CheckBox fx:id="chkCash" text="Cash/Card" styleClass="nodeLabel"/>
+                                            <CheckBox fx:id="chkCheque" text="CHECK" styleClass="nodeLabel"/>
+                                            <CheckBox fx:id="chkDD" text="Bank Note" styleClass="nodeLabel"/>
+                                            <CheckBox fx:id="chkBankTransfer" text="Transfer" styleClass="nodeLabel"/>
+                                        </HBox>
+                                        <CheckBox fx:id="chkRealisedPaymentsOnly"
+                                                  text="Do not include unrealized checks / DD payments:"
+                                                  styleClass="nodeLabel">
+                                            <VBox.margin>
+                                                <Insets top="10.0" right="0" bottom="5.0" left="10.0"/>
+                                            </VBox.margin>
+                                        </CheckBox>
+                                        <Label fx:id="lblPaymentModeError" styleClass="errorLabel"/>
+                                    </VBox>
+                                </VBox>
+                                <VBox spacing="10.0" styleClass="parent">
+                                    <CheckBox fx:id="chkCustomers" text="Customers" styleClass="subHeading"/>
+                                    <VBox fx:id="customersPane" styleClass="parent" spacing="3.0"
+                                          fillWidth="false">
+                                        <CheckListView fx:id="lvwCustomers" prefHeight="200"
+                                                       minWidth="500">
+                                            <placeholder>
+                                                <Label text="&lt; No customer defined &gt;"
+                                                       fx:id="placeholderText"/>
+                                            </placeholder>
+                                        </CheckListView>
+                                        <TextField fx:id="tfSearchCustomer" minWidth="${lvwCustomers.width}"
+                                                   promptText="Type to search for matching customer names">
+                                            <VBox.margin>
+                                                <Insets top="5.0" bottom="5.0" left="0" right="0"/>
+                                            </VBox.margin>
+                                        </TextField>
+                                        <Label fx:id="lblCustomersError" styleClass="errorLabel"/>
+                                        <CheckBox fx:id="selectAllCustomersButton" text="Select all customers"
+                                                  styleClass="nodeLabel" onAction="#onSelectAllCustomersAction">
+                                            <tooltip>
+                                                <Tooltip text="Check this box to select all customers."/>
+                                            </tooltip>
+                                        </CheckBox>
+                                    </VBox>
+                                </VBox>
+                                <HBox alignment="TOP_RIGHT" styleClass="parent">
+                                    <VBox.margin>
+                                        <Insets top="15" left="0" right="0" bottom="0"/>
+                                    </VBox.margin>
+                                    <Button fx:id="btnSearchPayments" text="Search payments"
+                                            onAction="#onPaymentsSearchAction"/>
+                                </HBox>
+                            </VBox>
+                        </content>
+                    </TitledPane>
+                    <TitledPane fx:id="searchResultPane" styleClass="parent" expanded="false">
+                        <text>
+                           Result of the research
+                        </text>
+                        <content>
+                            <BorderPane styleClass="parent">
+                                <center>
+                                    <TableView fx:id="tableView" minHeight="300" minWidth="500" maxWidth="$MAX_DOUBLE">
+                                        <placeholder>
+                                            <Label text="No matching payment found."/>
+                                        </placeholder>
+                                        <columnResizePolicy>
+                                            <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                                        </columnResizePolicy>
+                                        <columns>
+                                            <TableColumn fx:id="paymentDateColumn" minWidth="100" prefWidth="100"
+                                                         text="Date">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="paymentDate"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="customerColumn" minWidth="200" prefWidth="300"
+                                                         text="Customer">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="customer"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="amountColumn" minWidth="100" prefWidth="140"
+                                                         text="Amount (Dirham)">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="amount"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="paymentModeColumn" minWidth="80" prefWidth="100"
+                                                         text="Method">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="paymentMode"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                            <TableColumn fx:id="instrumentRealisedColumn" minWidth="60" text="Done?">
+                                                <cellValueFactory>
+                                                    <PropertyValueFactory property="realisationStatus"/>
+                                                </cellValueFactory>
+                                            </TableColumn>
+                                        </columns>
+                                    </TableView>
+                                </center>
+                                <bottom>
+                                    <Label fx:id="lblPaymentsSummary" styleClass="highlight">
+                                        <BorderPane.margin>
+                                            <Insets top="10.0" left="0" right="0" bottom="0"/>
+                                        </BorderPane.margin>
+                                    </Label>
+                                </bottom>
+                                <right>
+                                    <VBox spacing="15.0" styleClass="parent" fx:id="rightButtonsBar">
+                                        <Button fx:id="btnEditPayment" text="Change payment..." maxWidth="$MAX_DOUBLE"
+                                                onAction="#onEditPaymentAction"/>
+                                        <Button fx:id="btnDeletePayment" text="Delete payment"
+                                                onAction="#onDeletePaymentAction"/>
+                                    </VBox>
+                                </right>
+                            </BorderPane>
+                        </content>
+                    </TitledPane>
+                </VBox>
+            </HBox>
+        </ScrollPane>
+    </center>
+    <bottom>
+        <HBox alignment="TOP_RIGHT" styleClass="parent">
+            <BorderPane.margin>
+                <Insets top="25.0" left="0" right="0" bottom="0"/>
+            </BorderPane.margin>
+            <Button fx:id="btnClose" text="Fermer" onAction="#onCloseTabAction"
+                    cancelButton="true"/>
+        </HBox>
+    </bottom>
+</BorderPane>
+
