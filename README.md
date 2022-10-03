@@ -19,7 +19,7 @@ Please Make Sure to Update Tests as Appropriate.
 
 ## Donation
 
-A Donation Would be Much Appreciated from Any Company/Little Factory or Somebody Enjoying our Software out There, Thank you Very Much. 
+A Donation Would be Much Appreciated from Any Company/Small Factory or Somebody Enjoying our Software out There, Thank you Very Much. 
 
 PayPal: [intCount](https://paypal.me/intcount?country.x=MA&locale.x=en_US)
 
