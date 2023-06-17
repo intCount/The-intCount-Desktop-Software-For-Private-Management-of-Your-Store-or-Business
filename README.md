@@ -1,10 +1,12 @@
 # intCount
 
+![Home Screenshot](https://drive.google.com/uc?export=view&id=19t6irWwN-SzjR9xEqLjSrl7TSek5TzP6)
+
 intCount Is an Intuitive, Easy to Use Desktop Software That Allow Anybody to Manage a Store, Small Home Business, Medium Factory/Company,  While Keeping Data Private.
 
 ## Installation
 
-Download and Install First the [JRE](https://intcount.com/download/you-need-to-install-this-runtime-before-first-use-of-intcount-software-vous-devez-installer-ce-runtime-avant-la-premiere-utilisation-du-logiciel-intcount-%d8%aa%d8%ad%d8%aa%d8%a7%d8%ac-%d8%a5%d9%84/) to Install Running Environment For the Software to Run.
+Download and Install First the [JRE](https://drive.google.com/file/d/1CjlihDy8lI-odXfQKO95-3GxC8EB3V4E/view) to Install Running Environment For the Software to Run.
 
 Next, Download the Release That Suits Your Language or Try to Compile Yourself the Source Code and Export Your Own Release
 
