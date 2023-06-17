@@ -2,7 +2,7 @@
 
 ![Home Screenshot](https://drive.google.com/uc?export=view&id=19t6irWwN-SzjR9xEqLjSrl7TSek5TzP6)
 
-intCount Is an Intuitive, Easy to Use Desktop Software That Allow Anybody to Manage a Store, Small Home Business, Medium Factory/Company,  While Keeping Data Private.
+intCount is an Intuitive, Easy to Use Desktop Software That Allow Anybody to Manage a Store, Small Home Business, Medium Factory/Company,  While Keeping Data Private.
 
 ## Installation
 
